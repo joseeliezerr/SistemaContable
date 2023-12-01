@@ -12,7 +12,7 @@ namespace SistemaContable.Formularios
 {
     public partial class MD : Form
     {
-        private int childFormNumber = 0;
+     
 
         public MD()
         {
@@ -21,39 +21,27 @@ namespace SistemaContable.Formularios
 
         private void ShowNewForm(object sender, EventArgs e)
         {
-            Catalogo_Contable catalogoContable = new Catalogo_Contable
+            Catalogo_Contable catalogoContable = new()
             {
                 MdiParent = this,
-                WindowState = FormWindowState.Maximized 
+                WindowState = FormWindowState.Maximized
             };
             catalogoContable.Show();
         }
 
         private void OpenFile(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            openFileDialog.Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
-            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = openFileDialog.FileName;
-            }
+          
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            saveFileDialog.Filter = "Archivos de texto (*.txt)|*.txt|Todos los archivos (*.*)|*.*";
-            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-                string FileName = saveFileDialog.FileName;
-            }
+          
         }
 
         private void ExitToolsStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
         }
 
         private void CutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -70,7 +58,7 @@ namespace SistemaContable.Formularios
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -111,17 +99,17 @@ namespace SistemaContable.Formularios
 
         }
 
-        private void statusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void StatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
 
-        private void toolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void ToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }
 
-        private void fileMenu_Click(object sender, EventArgs e)
+        private void FileMenu_Click(object sender, EventArgs e)
         {
 
         }

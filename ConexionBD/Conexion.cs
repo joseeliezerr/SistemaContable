@@ -7,19 +7,14 @@ public class ConexionSql
 
     public ConexionSql()
     {
-        // Agregar TrustServerCertificate=True; para evitar la verificación del certificado SSL.
         connectionString = "SERVER=JRIVERAPC\\SQLEXPRESS;DATABASE=SistemaContable;integrated security=true;TrustServerCertificate=True;";
     }
 
     public SqlConnection AbrirConexion()
     {
-        if (conexion == null)
+        if (conexion == null || conexion.State == System.Data.ConnectionState.Closed)
         {
             conexion = new SqlConnection(connectionString);
-        }
-
-        if (conexion.State != System.Data.ConnectionState.Open)
-        {
             conexion.Open();
         }
 
@@ -34,3 +29,4 @@ public class ConexionSql
         }
     }
 }
+

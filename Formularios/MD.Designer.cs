@@ -39,8 +39,6 @@
             toolStripSeparator3 = new ToolStripSeparator();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveAsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator4 = new ToolStripSeparator();
-            toolStripSeparator5 = new ToolStripSeparator();
             editMenu = new ToolStripMenuItem();
             undoToolStripMenuItem = new ToolStripMenuItem();
             redoToolStripMenuItem = new ToolStripMenuItem();
@@ -70,10 +68,10 @@
             statusStrip.Location = new Point(0, 694);
             statusStrip.Name = "statusStrip";
             statusStrip.Padding = new Padding(1, 0, 19, 0);
-            statusStrip.Size = new Size(1142, 26);
+            statusStrip.Size = new Size(1435, 26);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "StatusStrip";
-            statusStrip.ItemClicked += statusStrip_ItemClicked;
+            statusStrip.ItemClicked += StatusStrip_ItemClicked;
             // 
             // toolStripStatusLabel
             // 
@@ -83,13 +81,13 @@
             // 
             // fileMenu
             // 
-            fileMenu.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripSeparator3, saveToolStripMenuItem, saveAsToolStripMenuItem, toolStripSeparator4, toolStripSeparator5 });
+            fileMenu.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripSeparator3, saveToolStripMenuItem, saveAsToolStripMenuItem });
             fileMenu.Image = (Image)resources.GetObject("fileMenu.Image");
             fileMenu.ImageTransparentColor = SystemColors.ActiveBorder;
             fileMenu.Name = "fileMenu";
             fileMenu.Size = new Size(110, 24);
             fileMenu.Text = "Catalogos";
-            fileMenu.Click += fileMenu_Click;
+            fileMenu.Click += FileMenu_Click;
             // 
             // newToolStripMenuItem
             // 
@@ -137,16 +135,6 @@
             saveAsToolStripMenuItem.Text = "Cátalago de Partidas";
             saveAsToolStripMenuItem.Click += SaveAsToolStripMenuItem_Click;
             // 
-            // toolStripSeparator4
-            // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(256, 6);
-            // 
-            // toolStripSeparator5
-            // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(256, 6);
-            // 
             // editMenu
             // 
             editMenu.DropDownItems.AddRange(new ToolStripItem[] { undoToolStripMenuItem, redoToolStripMenuItem });
@@ -188,7 +176,7 @@
             toolBarToolStripMenuItem.CheckOnClick = true;
             toolBarToolStripMenuItem.Image = (Image)resources.GetObject("toolBarToolStripMenuItem.Image");
             toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            toolBarToolStripMenuItem.Size = new Size(219, 26);
+            toolBarToolStripMenuItem.Size = new Size(224, 26);
             toolBarToolStripMenuItem.Text = "Fechas Modulares";
             toolBarToolStripMenuItem.Click += ToolBarToolStripMenuItem_Click;
             // 
@@ -197,7 +185,7 @@
             statusBarToolStripMenuItem.CheckOnClick = true;
             statusBarToolStripMenuItem.Image = (Image)resources.GetObject("statusBarToolStripMenuItem.Image");
             statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            statusBarToolStripMenuItem.Size = new Size(219, 26);
+            statusBarToolStripMenuItem.Size = new Size(224, 26);
             statusBarToolStripMenuItem.Text = "Periodos Contables";
             statusBarToolStripMenuItem.Click += StatusBarToolStripMenuItem_Click;
             // 
@@ -290,7 +278,7 @@
             menuStrip.MdiWindowListItem = windowsMenu;
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(8, 3, 0, 3);
-            menuStrip.Size = new Size(1142, 30);
+            menuStrip.Size = new Size(1435, 30);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "MenuStrip";
             // 
@@ -298,13 +286,14 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1142, 720);
+            ClientSize = new Size(1435, 720);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip;
             Margin = new Padding(4, 5, 4, 5);
             Name = "MD";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MD";
             Load += MD_Load;
             statusStrip.ResumeLayout(false);
@@ -325,8 +314,6 @@
         private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem saveAsToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator4;
-        private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem editMenu;
         private ToolStripMenuItem undoToolStripMenuItem;
         private ToolStripMenuItem redoToolStripMenuItem;
