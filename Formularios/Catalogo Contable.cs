@@ -111,7 +111,7 @@ namespace SistemaContable.Formularios
         }
         private void AjustarDtagridview()
         {
-            // Asumiendo que 'dataGridViewCategorias' es el nombre de tu DataGridView
+           
             dtgCatalogoContable.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dtgCatalogoContable.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dtgCatalogoContable.AllowUserToAddRows = false;

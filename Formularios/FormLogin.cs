@@ -6,12 +6,15 @@ using SistemaContable.Formularios;
 namespace SistemaContable
 {
     public partial class Login : Form
+
     {
-      //  private readonly ConexionSql conexionSql;
+       
+        private readonly ConexionSql conexionSql;
 
         public Login()
         {
             InitializeComponent();
+           
             conexionSql = new ConexionSql();
         }
 

@@ -118,5 +118,15 @@ namespace SistemaContable.Formularios
         {
 
         }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CatalogoMonedas catalogoMonedas = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            catalogoMonedas.Show();
+        }
     }
 }

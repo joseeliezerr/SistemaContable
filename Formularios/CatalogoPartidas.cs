@@ -122,7 +122,7 @@ namespace SistemaContable.Formularios
             AjustarDtagridview();
         }
 
-        private void dtgCatalogoPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgCatalogoPartidas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar si se ha seleccionado una fila en el DataGrid
             if (e.RowIndex >= 0)
@@ -138,7 +138,7 @@ namespace SistemaContable.Formularios
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado un registro (puedes ajustar esta parte según cómo determines qué registro está seleccionado)
             if (string.IsNullOrWhiteSpace(textBoxId.Text))
@@ -187,7 +187,7 @@ namespace SistemaContable.Formularios
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado un registro
             if (string.IsNullOrWhiteSpace(textBoxId.Text))

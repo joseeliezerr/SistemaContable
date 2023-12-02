@@ -52,7 +52,7 @@
             button3.TabIndex = 14;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button2
             // 
@@ -65,7 +65,7 @@
             button2.TabIndex = 13;
             button2.Text = "Modificar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // button1
             // 
@@ -106,7 +106,7 @@
             dtgCatalogoPartidas.RowTemplate.Height = 29;
             dtgCatalogoPartidas.Size = new Size(1464, 666);
             dtgCatalogoPartidas.TabIndex = 10;
-            dtgCatalogoPartidas.CellClick += dtgCatalogoPartidas_CellClick;
+            dtgCatalogoPartidas.CellClick += DtgCatalogoPartidas_CellClick;
             // 
             // textBoxId
             // 

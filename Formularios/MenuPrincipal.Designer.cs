@@ -125,6 +125,7 @@
             saveToolStripMenuItem.ShowShortcutKeys = false;
             saveToolStripMenuItem.Size = new Size(259, 26);
             saveToolStripMenuItem.Text = "Cátalago de Monedas";
+            saveToolStripMenuItem.Click += SaveToolStripMenuItem_Click;
             // 
             // saveAsToolStripMenuItem
             // 
