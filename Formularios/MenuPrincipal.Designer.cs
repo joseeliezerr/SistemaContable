@@ -3,14 +3,14 @@
     partial class MenuPrincipal
     {
         /// <summary>
-        /// Required designer variable.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,228 +20,322 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
-            menuStrip1 = new MenuStrip();
-            catalogosToolStripMenuItem = new ToolStripMenuItem();
-            catalogoDeTransaacionesToolStripMenuItem = new ToolStripMenuItem();
-            catalogoDeToolStripMenuItem = new ToolStripMenuItem();
-            catalogoDeMonedasToolStripMenuItem = new ToolStripMenuItem();
-            catalogoDePartidasToolStripMenuItem = new ToolStripMenuItem();
-            operacionesToolStripMenuItem = new ToolStripMenuItem();
-            partidasContablesToolStripMenuItem = new ToolStripMenuItem();
-            cuentasPorCobrarToolStripMenuItem = new ToolStripMenuItem();
-            cuentasPorPagarToolStripMenuItem = new ToolStripMenuItem();
-            configuracionesToolStripMenuItem = new ToolStripMenuItem();
-            fechasModularesToolStripMenuItem = new ToolStripMenuItem();
-            periodosContablesToolStripMenuItem = new ToolStripMenuItem();
-            reportesToolStripMenuItem = new ToolStripMenuItem();
-            movimientosDiariosToolStripMenuItem = new ToolStripMenuItem();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
+            statusStrip = new StatusStrip();
+            toolStripStatusLabel = new ToolStripStatusLabel();
+            toolTip = new ToolTip(components);
+            fileMenu = new ToolStripMenuItem();
+            newToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator3 = new ToolStripSeparator();
+            saveToolStripMenuItem = new ToolStripMenuItem();
+            saveAsToolStripMenuItem = new ToolStripMenuItem();
+            editMenu = new ToolStripMenuItem();
+            undoToolStripMenuItem = new ToolStripMenuItem();
+            redoToolStripMenuItem = new ToolStripMenuItem();
+            viewMenu = new ToolStripMenuItem();
+            toolBarToolStripMenuItem = new ToolStripMenuItem();
+            statusBarToolStripMenuItem = new ToolStripMenuItem();
+            toolsMenu = new ToolStripMenuItem();
+            optionsToolStripMenuItem = new ToolStripMenuItem();
             movimientosPorCuentaToolStripMenuItem = new ToolStripMenuItem();
-            estadoDeCuentaToolStripMenuItem = new ToolStripMenuItem();
             balanceGeneralToolStripMenuItem = new ToolStripMenuItem();
             estadoDeResultadoToolStripMenuItem = new ToolStripMenuItem();
-            administraciónDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
-            catalogoDeUsuariosToolStripMenuItem = new ToolStripMenuItem();
-            pictureBox1 = new PictureBox();
-            menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            windowsMenu = new ToolStripMenuItem();
+            cascadeToolStripMenuItem = new ToolStripMenuItem();
+            helpMenu = new ToolStripMenuItem();
+            contentsToolStripMenuItem = new ToolStripMenuItem();
+            toolStripSeparator8 = new ToolStripSeparator();
+            historicoValorDeConversiónToolStripMenuItem = new ToolStripMenuItem();
+            menuStrip = new MenuStrip();
+            statusStrip.SuspendLayout();
+            menuStrip.SuspendLayout();
             SuspendLayout();
             // 
-            // menuStrip1
+            // statusStrip
             // 
-            menuStrip1.ImageScalingSize = new Size(20, 20);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { catalogosToolStripMenuItem, operacionesToolStripMenuItem, configuracionesToolStripMenuItem, reportesToolStripMenuItem, administraciónDeUsuariosToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1219, 28);
-            menuStrip1.TabIndex = 0;
-            menuStrip1.Text = "menuStrip1";
+            statusStrip.ImageScalingSize = new Size(20, 20);
+            statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
+            statusStrip.Location = new Point(0, 694);
+            statusStrip.Name = "statusStrip";
+            statusStrip.Padding = new Padding(1, 0, 19, 0);
+            statusStrip.Size = new Size(1435, 26);
+            statusStrip.TabIndex = 2;
+            statusStrip.Text = "StatusStrip";
+            statusStrip.ItemClicked += StatusStrip_ItemClicked;
             // 
-            // catalogosToolStripMenuItem
+            // toolStripStatusLabel
             // 
-            catalogosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { catalogoDeTransaacionesToolStripMenuItem, catalogoDeToolStripMenuItem, catalogoDeMonedasToolStripMenuItem, catalogoDePartidasToolStripMenuItem });
-            catalogosToolStripMenuItem.Name = "catalogosToolStripMenuItem";
-            catalogosToolStripMenuItem.Size = new Size(90, 24);
-            catalogosToolStripMenuItem.Text = "Catalogos";
+            toolStripStatusLabel.Name = "toolStripStatusLabel";
+            toolStripStatusLabel.Size = new Size(54, 20);
+            toolStripStatusLabel.Text = "Estado";
             // 
-            // catalogoDeTransaacionesToolStripMenuItem
+            // fileMenu
             // 
-            catalogoDeTransaacionesToolStripMenuItem.Name = "catalogoDeTransaacionesToolStripMenuItem";
-            catalogoDeTransaacionesToolStripMenuItem.Size = new Size(269, 26);
-            catalogoDeTransaacionesToolStripMenuItem.Text = "Catalogo Contable";
-            catalogoDeTransaacionesToolStripMenuItem.Click += catalogoDeTransaacionesToolStripMenuItem_Click;
+            fileMenu.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripSeparator3, saveToolStripMenuItem, saveAsToolStripMenuItem });
+            fileMenu.Image = (Image)resources.GetObject("fileMenu.Image");
+            fileMenu.ImageTransparentColor = SystemColors.ActiveBorder;
+            fileMenu.Name = "fileMenu";
+            fileMenu.Size = new Size(110, 24);
+            fileMenu.Text = "Catalogos";
+            fileMenu.Click += FileMenu_Click;
             // 
-            // catalogoDeToolStripMenuItem
+            // newToolStripMenuItem
             // 
-            catalogoDeToolStripMenuItem.Name = "catalogoDeToolStripMenuItem";
-            catalogoDeToolStripMenuItem.Size = new Size(269, 26);
-            catalogoDeToolStripMenuItem.Text = "Catalogo de Transacciones";
+            newToolStripMenuItem.Image = (Image)resources.GetObject("newToolStripMenuItem.Image");
+            newToolStripMenuItem.ImageTransparentColor = Color.Black;
+            newToolStripMenuItem.Name = "newToolStripMenuItem";
+            newToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            newToolStripMenuItem.ShowShortcutKeys = false;
+            newToolStripMenuItem.Size = new Size(259, 26);
+            newToolStripMenuItem.Text = "&Catalogo Contable";
+            newToolStripMenuItem.Click += ShowNewForm;
             // 
-            // catalogoDeMonedasToolStripMenuItem
+            // openToolStripMenuItem
             // 
-            catalogoDeMonedasToolStripMenuItem.Name = "catalogoDeMonedasToolStripMenuItem";
-            catalogoDeMonedasToolStripMenuItem.Size = new Size(269, 26);
-            catalogoDeMonedasToolStripMenuItem.Text = "Catalogo de Monedas";
+            openToolStripMenuItem.Image = (Image)resources.GetObject("openToolStripMenuItem.Image");
+            openToolStripMenuItem.ImageTransparentColor = Color.Black;
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
+            openToolStripMenuItem.ShowShortcutKeys = false;
+            openToolStripMenuItem.Size = new Size(259, 26);
+            openToolStripMenuItem.Text = "Cátalago de Transacciones";
+            openToolStripMenuItem.Click += OpenFile;
             // 
-            // catalogoDePartidasToolStripMenuItem
+            // toolStripSeparator3
             // 
-            catalogoDePartidasToolStripMenuItem.Name = "catalogoDePartidasToolStripMenuItem";
-            catalogoDePartidasToolStripMenuItem.Size = new Size(269, 26);
-            catalogoDePartidasToolStripMenuItem.Text = "Catalogo de Partidas";
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(256, 6);
             // 
-            // operacionesToolStripMenuItem
+            // saveToolStripMenuItem
             // 
-            operacionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { partidasContablesToolStripMenuItem, cuentasPorCobrarToolStripMenuItem, cuentasPorPagarToolStripMenuItem });
-            operacionesToolStripMenuItem.Name = "operacionesToolStripMenuItem";
-            operacionesToolStripMenuItem.Size = new Size(106, 24);
-            operacionesToolStripMenuItem.Text = "Operaciones";
+            saveToolStripMenuItem.Image = (Image)resources.GetObject("saveToolStripMenuItem.Image");
+            saveToolStripMenuItem.ImageTransparentColor = Color.Black;
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
+            saveToolStripMenuItem.ShowShortcutKeys = false;
+            saveToolStripMenuItem.Size = new Size(259, 26);
+            saveToolStripMenuItem.Text = "Cátalago de Monedas";
             // 
-            // partidasContablesToolStripMenuItem
+            // saveAsToolStripMenuItem
             // 
-            partidasContablesToolStripMenuItem.Name = "partidasContablesToolStripMenuItem";
-            partidasContablesToolStripMenuItem.Size = new Size(218, 26);
-            partidasContablesToolStripMenuItem.Text = "Partidas Contables";
+            saveAsToolStripMenuItem.Image = (Image)resources.GetObject("saveAsToolStripMenuItem.Image");
+            saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            saveAsToolStripMenuItem.ShowShortcutKeys = false;
+            saveAsToolStripMenuItem.Size = new Size(259, 26);
+            saveAsToolStripMenuItem.Text = "Cátalago de Partidas";
+            saveAsToolStripMenuItem.Click += SaveAsToolStripMenuItem_Click;
             // 
-            // cuentasPorCobrarToolStripMenuItem
+            // editMenu
             // 
-            cuentasPorCobrarToolStripMenuItem.Name = "cuentasPorCobrarToolStripMenuItem";
-            cuentasPorCobrarToolStripMenuItem.Size = new Size(218, 26);
-            cuentasPorCobrarToolStripMenuItem.Text = "Cuentas Por Cobrar";
+            editMenu.DropDownItems.AddRange(new ToolStripItem[] { undoToolStripMenuItem, redoToolStripMenuItem });
+            editMenu.Image = (Image)resources.GetObject("editMenu.Image");
+            editMenu.Name = "editMenu";
+            editMenu.Size = new Size(126, 24);
+            editMenu.Text = "&Operaciones";
             // 
-            // cuentasPorPagarToolStripMenuItem
+            // undoToolStripMenuItem
             // 
-            cuentasPorPagarToolStripMenuItem.Name = "cuentasPorPagarToolStripMenuItem";
-            cuentasPorPagarToolStripMenuItem.Size = new Size(218, 26);
-            cuentasPorPagarToolStripMenuItem.Text = "Cuentas Por Pagar";
+            undoToolStripMenuItem.Image = (Image)resources.GetObject("undoToolStripMenuItem.Image");
+            undoToolStripMenuItem.ImageTransparentColor = Color.Black;
+            undoToolStripMenuItem.Name = "undoToolStripMenuItem";
+            undoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Z;
+            undoToolStripMenuItem.ShowShortcutKeys = false;
+            undoToolStripMenuItem.Size = new Size(252, 26);
+            undoToolStripMenuItem.Text = "Partidas Contables";
             // 
-            // configuracionesToolStripMenuItem
+            // redoToolStripMenuItem
             // 
-            configuracionesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { fechasModularesToolStripMenuItem, periodosContablesToolStripMenuItem });
-            configuracionesToolStripMenuItem.Name = "configuracionesToolStripMenuItem";
-            configuracionesToolStripMenuItem.Size = new Size(130, 24);
-            configuracionesToolStripMenuItem.Text = "Configuraciones";
+            redoToolStripMenuItem.Image = (Image)resources.GetObject("redoToolStripMenuItem.Image");
+            redoToolStripMenuItem.ImageTransparentColor = Color.Black;
+            redoToolStripMenuItem.Name = "redoToolStripMenuItem";
+            redoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.Y;
+            redoToolStripMenuItem.ShowShortcutKeys = false;
+            redoToolStripMenuItem.Size = new Size(252, 26);
+            redoToolStripMenuItem.Text = "Cuentas Por Cobrar/Pagar";
             // 
-            // fechasModularesToolStripMenuItem
+            // viewMenu
             // 
-            fechasModularesToolStripMenuItem.Name = "fechasModularesToolStripMenuItem";
-            fechasModularesToolStripMenuItem.Size = new Size(219, 26);
-            fechasModularesToolStripMenuItem.Text = "Fechas Modulares";
+            viewMenu.DropDownItems.AddRange(new ToolStripItem[] { toolBarToolStripMenuItem, statusBarToolStripMenuItem });
+            viewMenu.Image = (Image)resources.GetObject("viewMenu.Image");
+            viewMenu.Name = "viewMenu";
+            viewMenu.Size = new Size(150, 24);
+            viewMenu.Text = "&Configuraciones";
             // 
-            // periodosContablesToolStripMenuItem
+            // toolBarToolStripMenuItem
             // 
-            periodosContablesToolStripMenuItem.Name = "periodosContablesToolStripMenuItem";
-            periodosContablesToolStripMenuItem.Size = new Size(219, 26);
-            periodosContablesToolStripMenuItem.Text = "Periodos Contables";
+            toolBarToolStripMenuItem.CheckOnClick = true;
+            toolBarToolStripMenuItem.Image = (Image)resources.GetObject("toolBarToolStripMenuItem.Image");
+            toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
+            toolBarToolStripMenuItem.Size = new Size(219, 26);
+            toolBarToolStripMenuItem.Text = "Fechas Modulares";
+            toolBarToolStripMenuItem.Click += ToolBarToolStripMenuItem_Click;
             // 
-            // reportesToolStripMenuItem
+            // statusBarToolStripMenuItem
             // 
-            reportesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { movimientosDiariosToolStripMenuItem, movimientosPorCuentaToolStripMenuItem, estadoDeCuentaToolStripMenuItem, balanceGeneralToolStripMenuItem, estadoDeResultadoToolStripMenuItem });
-            reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            reportesToolStripMenuItem.Size = new Size(82, 24);
-            reportesToolStripMenuItem.Text = "Reportes";
+            statusBarToolStripMenuItem.CheckOnClick = true;
+            statusBarToolStripMenuItem.Image = (Image)resources.GetObject("statusBarToolStripMenuItem.Image");
+            statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
+            statusBarToolStripMenuItem.Size = new Size(219, 26);
+            statusBarToolStripMenuItem.Text = "Periodos Contables";
+            statusBarToolStripMenuItem.Click += StatusBarToolStripMenuItem_Click;
             // 
-            // movimientosDiariosToolStripMenuItem
+            // toolsMenu
             // 
-            movimientosDiariosToolStripMenuItem.Name = "movimientosDiariosToolStripMenuItem";
-            movimientosDiariosToolStripMenuItem.Size = new Size(253, 26);
-            movimientosDiariosToolStripMenuItem.Text = "Movimientos Diarios";
+            toolsMenu.DropDownItems.AddRange(new ToolStripItem[] { optionsToolStripMenuItem, movimientosPorCuentaToolStripMenuItem, balanceGeneralToolStripMenuItem, estadoDeResultadoToolStripMenuItem });
+            toolsMenu.Image = (Image)resources.GetObject("toolsMenu.Image");
+            toolsMenu.Name = "toolsMenu";
+            toolsMenu.Size = new Size(102, 24);
+            toolsMenu.Text = "&Reportes";
+            // 
+            // optionsToolStripMenuItem
+            // 
+            optionsToolStripMenuItem.Image = (Image)resources.GetObject("optionsToolStripMenuItem.Image");
+            optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            optionsToolStripMenuItem.Size = new Size(253, 26);
+            optionsToolStripMenuItem.Text = "Movimientos Diarios";
             // 
             // movimientosPorCuentaToolStripMenuItem
             // 
+            movimientosPorCuentaToolStripMenuItem.Image = (Image)resources.GetObject("movimientosPorCuentaToolStripMenuItem.Image");
             movimientosPorCuentaToolStripMenuItem.Name = "movimientosPorCuentaToolStripMenuItem";
             movimientosPorCuentaToolStripMenuItem.Size = new Size(253, 26);
             movimientosPorCuentaToolStripMenuItem.Text = "Movimientos Por Cuenta";
             // 
-            // estadoDeCuentaToolStripMenuItem
-            // 
-            estadoDeCuentaToolStripMenuItem.Name = "estadoDeCuentaToolStripMenuItem";
-            estadoDeCuentaToolStripMenuItem.Size = new Size(253, 26);
-            estadoDeCuentaToolStripMenuItem.Text = "Estado de Cuenta";
-            // 
             // balanceGeneralToolStripMenuItem
             // 
+            balanceGeneralToolStripMenuItem.Image = (Image)resources.GetObject("balanceGeneralToolStripMenuItem.Image");
             balanceGeneralToolStripMenuItem.Name = "balanceGeneralToolStripMenuItem";
             balanceGeneralToolStripMenuItem.Size = new Size(253, 26);
             balanceGeneralToolStripMenuItem.Text = "Balance General";
             // 
             // estadoDeResultadoToolStripMenuItem
             // 
+            estadoDeResultadoToolStripMenuItem.Image = (Image)resources.GetObject("estadoDeResultadoToolStripMenuItem.Image");
             estadoDeResultadoToolStripMenuItem.Name = "estadoDeResultadoToolStripMenuItem";
             estadoDeResultadoToolStripMenuItem.Size = new Size(253, 26);
             estadoDeResultadoToolStripMenuItem.Text = "Estado de Resultado";
             // 
-            // administraciónDeUsuariosToolStripMenuItem
+            // windowsMenu
             // 
-            administraciónDeUsuariosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { catalogoDeUsuariosToolStripMenuItem });
-            administraciónDeUsuariosToolStripMenuItem.Name = "administraciónDeUsuariosToolStripMenuItem";
-            administraciónDeUsuariosToolStripMenuItem.Size = new Size(204, 24);
-            administraciónDeUsuariosToolStripMenuItem.Text = "Administración de Usuarios";
+            windowsMenu.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem });
+            windowsMenu.Image = (Image)resources.GetObject("windowsMenu.Image");
+            windowsMenu.Name = "windowsMenu";
+            windowsMenu.Size = new Size(143, 24);
+            windowsMenu.Text = "&Administración";
             // 
-            // catalogoDeUsuariosToolStripMenuItem
+            // cascadeToolStripMenuItem
             // 
-            catalogoDeUsuariosToolStripMenuItem.Name = "catalogoDeUsuariosToolStripMenuItem";
-            catalogoDeUsuariosToolStripMenuItem.Size = new Size(234, 26);
-            catalogoDeUsuariosToolStripMenuItem.Text = "Catalogo de Usuarios";
+            cascadeToolStripMenuItem.Image = (Image)resources.GetObject("cascadeToolStripMenuItem.Image");
+            cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
+            cascadeToolStripMenuItem.Size = new Size(234, 26);
+            cascadeToolStripMenuItem.Text = "&Catalogo de Usuarios";
+            cascadeToolStripMenuItem.Click += CascadeToolStripMenuItem_Click;
             // 
-            // pictureBox1
+            // helpMenu
             // 
-            pictureBox1.Image = Properties.Resources.pexels_breakingpic_3305;
-            pictureBox1.Location = new Point(0, 31);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1219, 737);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            helpMenu.DropDownItems.AddRange(new ToolStripItem[] { contentsToolStripMenuItem, toolStripSeparator8, historicoValorDeConversiónToolStripMenuItem });
+            helpMenu.Image = (Image)resources.GetObject("helpMenu.Image");
+            helpMenu.Name = "helpMenu";
+            helpMenu.Size = new Size(109, 24);
+            helpMenu.Text = "Historicos";
+            // 
+            // contentsToolStripMenuItem
+            // 
+            contentsToolStripMenuItem.Image = (Image)resources.GetObject("contentsToolStripMenuItem.Image");
+            contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
+            contentsToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.F1;
+            contentsToolStripMenuItem.ShowShortcutKeys = false;
+            contentsToolStripMenuItem.Size = new Size(288, 26);
+            contentsToolStripMenuItem.Text = "Historico Saldos Por Periodo";
+            // 
+            // toolStripSeparator8
+            // 
+            toolStripSeparator8.Name = "toolStripSeparator8";
+            toolStripSeparator8.Size = new Size(285, 6);
+            // 
+            // historicoValorDeConversiónToolStripMenuItem
+            // 
+            historicoValorDeConversiónToolStripMenuItem.Image = (Image)resources.GetObject("historicoValorDeConversiónToolStripMenuItem.Image");
+            historicoValorDeConversiónToolStripMenuItem.Name = "historicoValorDeConversiónToolStripMenuItem";
+            historicoValorDeConversiónToolStripMenuItem.Size = new Size(288, 26);
+            historicoValorDeConversiónToolStripMenuItem.Text = "Historico Valor de Conversión";
+            // 
+            // menuStrip
+            // 
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { fileMenu, editMenu, viewMenu, toolsMenu, windowsMenu, helpMenu });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.MdiWindowListItem = windowsMenu;
+            menuStrip.Name = "menuStrip";
+            menuStrip.Padding = new Padding(8, 3, 0, 3);
+            menuStrip.Size = new Size(1435, 30);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "MenuStrip";
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1219, 769);
-            Controls.Add(pictureBox1);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
-            MaximizeBox = false;
+            BackgroundImage = Properties.Resources.pexels_breakingpic_3305;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1435, 720);
+            Controls.Add(statusStrip);
+            Controls.Add(menuStrip);
+            IsMdiContainer = true;
+            MainMenuStrip = menuStrip;
+            Margin = new Padding(4, 5, 4, 5);
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Menu Principal";
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            Text = "MD";
+            Load += MD_Load;
+            statusStrip.ResumeLayout(false);
+            statusStrip.PerformLayout();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private MenuStrip menuStrip1;
-        private ToolStripMenuItem catalogosToolStripMenuItem;
-        private ToolStripMenuItem catalogoDeTransaacionesToolStripMenuItem;
-        private ToolStripMenuItem catalogoDeToolStripMenuItem;
-        private ToolStripMenuItem catalogoDeMonedasToolStripMenuItem;
-        private ToolStripMenuItem catalogoDePartidasToolStripMenuItem;
-        private ToolStripMenuItem operacionesToolStripMenuItem;
-        private ToolStripMenuItem partidasContablesToolStripMenuItem;
-        private ToolStripMenuItem cuentasPorCobrarToolStripMenuItem;
-        private ToolStripMenuItem cuentasPorPagarToolStripMenuItem;
-        private ToolStripMenuItem configuracionesToolStripMenuItem;
-        private ToolStripMenuItem fechasModularesToolStripMenuItem;
-        private ToolStripMenuItem periodosContablesToolStripMenuItem;
-        private ToolStripMenuItem reportesToolStripMenuItem;
-        private ToolStripMenuItem movimientosDiariosToolStripMenuItem;
+        private StatusStrip statusStrip;
+        private ToolStripStatusLabel toolStripStatusLabel;
+        private ToolTip toolTip;
+        private ToolStripMenuItem fileMenu;
+        private ToolStripMenuItem newToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem saveAsToolStripMenuItem;
+        private ToolStripMenuItem editMenu;
+        private ToolStripMenuItem undoToolStripMenuItem;
+        private ToolStripMenuItem redoToolStripMenuItem;
+        private ToolStripMenuItem viewMenu;
+        private ToolStripMenuItem toolBarToolStripMenuItem;
+        private ToolStripMenuItem statusBarToolStripMenuItem;
+        private ToolStripMenuItem toolsMenu;
+        private ToolStripMenuItem optionsToolStripMenuItem;
+        private ToolStripMenuItem windowsMenu;
+        private ToolStripMenuItem cascadeToolStripMenuItem;
+        private ToolStripMenuItem helpMenu;
+        private ToolStripMenuItem contentsToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator8;
+        private MenuStrip menuStrip;
         private ToolStripMenuItem movimientosPorCuentaToolStripMenuItem;
-        private ToolStripMenuItem estadoDeCuentaToolStripMenuItem;
         private ToolStripMenuItem balanceGeneralToolStripMenuItem;
         private ToolStripMenuItem estadoDeResultadoToolStripMenuItem;
-        private ToolStripMenuItem administraciónDeUsuariosToolStripMenuItem;
-        private ToolStripMenuItem catalogoDeUsuariosToolStripMenuItem;
-        private PictureBox pictureBox1;
+        private ToolStripMenuItem historicoValorDeConversiónToolStripMenuItem;
     }
 }
+
+
+

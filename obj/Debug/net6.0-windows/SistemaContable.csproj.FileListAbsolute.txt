@@ -127,5 +127,6 @@ E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\refint\SistemaContab
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.pdb
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.genruntimeconfig.cache
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\ref\SistemaContable.dll
-E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.MD.resources
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Catalogo_Contable.resources
+E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.CatalogoPartidas.resources
+E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.MenuPrincipal.resources

@@ -54,7 +54,7 @@
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Entrar";
             btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            btnLogin.Click += BtnLogin_Click;
             // 
             // label1
             // 
@@ -132,6 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(778, 435);
             Controls.Add(label3);
             Controls.Add(pictureBox2);

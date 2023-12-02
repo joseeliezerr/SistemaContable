@@ -4,10 +4,16 @@
     <Compile Update="Formularios\Catalogo Contable.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\CatalogoMonedas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\CatalogoPartidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\MD.cs">
+    <Compile Update="Formularios\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
