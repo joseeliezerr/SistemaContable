@@ -133,5 +133,15 @@ namespace SistemaContable.Formularios
             };
             catalogoMonedas.Show();
         }
+
+        private void UndoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PartidasContables PartidasContables = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            PartidasContables.Show();
+        }
     }
 }

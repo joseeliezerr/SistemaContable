@@ -227,10 +227,12 @@ namespace SistemaContable.Formularios
                 {
                     int result = command.ExecuteNonQuery();
                     if (result > 0)
+
                     {
-                        MessageBox.Show("Cuenta contable eliminada con éxito.");
                         CargarDatos();
                         LimpiarCampos();
+                        MessageBox.Show("Cuenta contable eliminada con éxito.");
+                       
                     }
                     else
                     {

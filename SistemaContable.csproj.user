@@ -1,22 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="Formularios\Catalogo Contable.cs">
+    <Compile Update="Formularios\Catalogos\Catalogo Contable.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\CatalogoMonedas.cs">
+    <Compile Update="Formularios\Catalogos\CatalogoMonedas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\CatalogoPartidas.cs">
+    <Compile Update="Formularios\Catalogos\CatalogoPartidas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\CatalogoTransacciones.cs">
+    <Compile Update="Formularios\Catalogos\CatalogoTransacciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\FormLogin.cs">
+    <Compile Update="Formularios\MenuPrincipal y Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Formularios\MenuPrincipal.cs">
+    <Compile Update="Formularios\MenuPrincipal y Login\MenuPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Operaciones\PartidasContables.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

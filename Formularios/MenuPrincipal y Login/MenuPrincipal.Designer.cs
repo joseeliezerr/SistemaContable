@@ -147,6 +147,7 @@
             undoToolStripMenuItem.ShowShortcutKeys = false;
             undoToolStripMenuItem.Size = new Size(252, 26);
             undoToolStripMenuItem.Text = "Partidas Contables";
+            undoToolStripMenuItem.Click += UndoToolStripMenuItem_Click;
             // 
             // redoToolStripMenuItem
             // 

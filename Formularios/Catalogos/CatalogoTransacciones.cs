@@ -75,36 +75,32 @@ namespace SistemaContable.Formularios
             // Define la consulta SQL para insertar los datos
             string query = "INSERT INTO CatalogoTransacciones (Fecha, TipoTransaccion, Descripcion) VALUES (@Fecha, @TipoTransaccion, @Descripcion)";
 
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
-            {
-                using (SqlCommand command = new(query, conexion))
-                {
-                    // Agrega los parámetros al comando para evitar la inyección SQL
-                    command.Parameters.AddWithValue("@Fecha", fecha); // Aquí se pasa el objeto DateTime directamente
-                    command.Parameters.AddWithValue("@TipoTransaccion", tipoTransaccion);
-                    command.Parameters.AddWithValue("@Descripcion", descripcion);
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            using SqlCommand command = new(query, conexion);
+            // Agrega los parámetros al comando para evitar la inyección SQL
+            command.Parameters.AddWithValue("@Fecha", fecha); // Aquí se pasa el objeto DateTime directamente
+            command.Parameters.AddWithValue("@TipoTransaccion", tipoTransaccion);
+            command.Parameters.AddWithValue("@Descripcion", descripcion);
 
-                    try
-                    {
-                        // Ejecuta el comando y verifica el resultado
-                        int result = command.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-                            MessageBox.Show("Transacción guardada con éxito.");
-                            CargarDatos();  // Asumiendo que este método recarga los datos en algún control de la interfaz de usuario
-                            Limpiar(); // Asumiendo que este método limpia los campos después de guardar
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se insertaron registros.");
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        // Maneja cualquier excepción durante el proceso de inserción
-                        MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+            try
+            {
+                // Ejecuta el comando y verifica el resultado
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    MessageBox.Show("Transacción guardada con éxito.");
+                    CargarDatos();  // Asumiendo que este método recarga los datos en algún control de la interfaz de usuario
+                    Limpiar(); // Asumiendo que este método limpia los campos después de guardar
                 }
+                else
+                {
+                    MessageBox.Show("No se insertaron registros.");
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Maneja cualquier excepción durante el proceso de inserción
+                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
