@@ -191,6 +191,7 @@ namespace SistemaContable.Formularios
                 {
                     CargarDatos();
                     LimpiarCampos();
+                    AjustarDgv();
                     MessageBox.Show("Ingreso de partida contable guardado con éxito.");
 
                 }

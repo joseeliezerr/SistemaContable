@@ -158,6 +158,7 @@
             redoToolStripMenuItem.ShowShortcutKeys = false;
             redoToolStripMenuItem.Size = new Size(252, 26);
             redoToolStripMenuItem.Text = "Cuentas Por Cobrar/Pagar";
+            redoToolStripMenuItem.Click += RedoToolStripMenuItem_Click;
             // 
             // viewMenu
             // 

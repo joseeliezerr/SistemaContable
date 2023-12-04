@@ -19,6 +19,9 @@
     <Compile Update="Formularios\MenuPrincipal y Login\MenuPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\Operaciones\CuentasPorCobrarPagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\Operaciones\PartidasContables.cs">
       <SubType>Form</SubType>
     </Compile>

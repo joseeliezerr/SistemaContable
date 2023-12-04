@@ -133,3 +133,4 @@ E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Form
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.CatalogoMonedas.resources
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.CatalogoTransacciones.resources
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.PartidasContables.resources
+E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Operaciones.CuentasPorCobrarPagar.resources

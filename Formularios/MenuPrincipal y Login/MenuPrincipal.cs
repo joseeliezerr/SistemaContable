@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaContable.Formularios.Operaciones;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -143,5 +144,17 @@ namespace SistemaContable.Formularios
             };
             PartidasContables.Show();
         }
+
+        private void RedoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CuentasPorCobrarPagar CuentasPorCobrarPagar = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            CuentasPorCobrarPagar.Show();
+        }
     }
-}
+    }
+
+
