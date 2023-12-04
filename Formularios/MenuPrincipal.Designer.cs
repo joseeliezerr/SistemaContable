@@ -36,7 +36,6 @@
             fileMenu = new ToolStripMenuItem();
             newToolStripMenuItem = new ToolStripMenuItem();
             openToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator3 = new ToolStripSeparator();
             saveToolStripMenuItem = new ToolStripMenuItem();
             saveAsToolStripMenuItem = new ToolStripMenuItem();
             editMenu = new ToolStripMenuItem();
@@ -81,7 +80,7 @@
             // 
             // fileMenu
             // 
-            fileMenu.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, toolStripSeparator3, saveToolStripMenuItem, saveAsToolStripMenuItem });
+            fileMenu.DropDownItems.AddRange(new ToolStripItem[] { newToolStripMenuItem, openToolStripMenuItem, saveToolStripMenuItem, saveAsToolStripMenuItem });
             fileMenu.Image = (Image)resources.GetObject("fileMenu.Image");
             fileMenu.ImageTransparentColor = SystemColors.ActiveBorder;
             fileMenu.Name = "fileMenu";
@@ -110,11 +109,6 @@
             openToolStripMenuItem.Size = new Size(259, 26);
             openToolStripMenuItem.Text = "Cátalago de Transacciones";
             openToolStripMenuItem.Click += OpenFile;
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(256, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -314,7 +308,6 @@
         private ToolStripMenuItem fileMenu;
         private ToolStripMenuItem newToolStripMenuItem;
         private ToolStripMenuItem openToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator3;
         private ToolStripMenuItem saveToolStripMenuItem;
         private ToolStripMenuItem saveAsToolStripMenuItem;
         private ToolStripMenuItem editMenu;

@@ -31,7 +31,12 @@ namespace SistemaContable.Formularios
 
         private void OpenFile(object sender, EventArgs e)
         {
-
+            CatalogoTransacciones catalogoTransacciones = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            catalogoTransacciones.Show();
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
