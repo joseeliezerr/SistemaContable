@@ -51,6 +51,7 @@
             estadoDeResultadoToolStripMenuItem = new ToolStripMenuItem();
             windowsMenu = new ToolStripMenuItem();
             cascadeToolStripMenuItem = new ToolStripMenuItem();
+            catalogoDeClientesProveedoresToolStripMenuItem = new ToolStripMenuItem();
             helpMenu = new ToolStripMenuItem();
             contentsToolStripMenuItem = new ToolStripMenuItem();
             toolStripSeparator8 = new ToolStripSeparator();
@@ -173,7 +174,7 @@
             toolBarToolStripMenuItem.CheckOnClick = true;
             toolBarToolStripMenuItem.Image = (Image)resources.GetObject("toolBarToolStripMenuItem.Image");
             toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            toolBarToolStripMenuItem.Size = new Size(224, 26);
+            toolBarToolStripMenuItem.Size = new Size(219, 26);
             toolBarToolStripMenuItem.Text = "Fechas Modulares";
             toolBarToolStripMenuItem.Click += ToolBarToolStripMenuItem_Click;
             // 
@@ -182,7 +183,7 @@
             statusBarToolStripMenuItem.CheckOnClick = true;
             statusBarToolStripMenuItem.Image = (Image)resources.GetObject("statusBarToolStripMenuItem.Image");
             statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            statusBarToolStripMenuItem.Size = new Size(224, 26);
+            statusBarToolStripMenuItem.Size = new Size(219, 26);
             statusBarToolStripMenuItem.Text = "Periodos Contables";
             statusBarToolStripMenuItem.Click += StatusBarToolStripMenuItem_Click;
             // 
@@ -224,7 +225,7 @@
             // 
             // windowsMenu
             // 
-            windowsMenu.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem });
+            windowsMenu.DropDownItems.AddRange(new ToolStripItem[] { cascadeToolStripMenuItem, catalogoDeClientesProveedoresToolStripMenuItem });
             windowsMenu.Image = (Image)resources.GetObject("windowsMenu.Image");
             windowsMenu.Name = "windowsMenu";
             windowsMenu.Size = new Size(143, 24);
@@ -234,9 +235,17 @@
             // 
             cascadeToolStripMenuItem.Image = (Image)resources.GetObject("cascadeToolStripMenuItem.Image");
             cascadeToolStripMenuItem.Name = "cascadeToolStripMenuItem";
-            cascadeToolStripMenuItem.Size = new Size(234, 26);
+            cascadeToolStripMenuItem.Size = new Size(318, 26);
             cascadeToolStripMenuItem.Text = "&Catalogo de Usuarios";
             cascadeToolStripMenuItem.Click += CascadeToolStripMenuItem_Click;
+            // 
+            // catalogoDeClientesProveedoresToolStripMenuItem
+            // 
+            catalogoDeClientesProveedoresToolStripMenuItem.Image = (Image)resources.GetObject("catalogoDeClientesProveedoresToolStripMenuItem.Image");
+            catalogoDeClientesProveedoresToolStripMenuItem.Name = "catalogoDeClientesProveedoresToolStripMenuItem";
+            catalogoDeClientesProveedoresToolStripMenuItem.Size = new Size(318, 26);
+            catalogoDeClientesProveedoresToolStripMenuItem.Text = "Catalogo de Clientes/Proveedores";
+            catalogoDeClientesProveedoresToolStripMenuItem.Click += catalogoDeClientesProveedoresToolStripMenuItem_Click;
             // 
             // helpMenu
             // 
@@ -283,7 +292,6 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = Properties.Resources.pexels_breakingpic_3305;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1435, 720);
             Controls.Add(statusStrip);
@@ -330,6 +338,7 @@
         private ToolStripMenuItem balanceGeneralToolStripMenuItem;
         private ToolStripMenuItem estadoDeResultadoToolStripMenuItem;
         private ToolStripMenuItem historicoValorDeConversiónToolStripMenuItem;
+        private ToolStripMenuItem catalogoDeClientesProveedoresToolStripMenuItem;
     }
 }
 

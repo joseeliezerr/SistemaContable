@@ -1,6 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Compile Update="Formularios\Administracion\CatalogoClientesProveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Administracion\CatalogoUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\Catalogos\Catalogo Contable.cs">
       <SubType>Form</SubType>
     </Compile>

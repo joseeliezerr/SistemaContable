@@ -136,3 +136,5 @@ E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Form
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Operaciones.CuentasPorCobrarPagar.resources
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Configuraciones.FechasModulares.resources
 E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Configuraciones.PeriodosContables.resources
+E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Administracion.CatalogoUsuarios.resources
+E:\Programacion\c#\SistemaContable\obj\Debug\net6.0-windows\SistemaContable.Formularios.Administracion.CatalogoClientesProveedores.resources

@@ -1,4 +1,5 @@
-﻿using SistemaContable.Formularios.Configuraciones;
+﻿using SistemaContable.Formularios.Administracion;
+using SistemaContable.Formularios.Configuraciones;
 using SistemaContable.Formularios.Operaciones;
 using System;
 using System.Collections.Generic;
@@ -90,30 +91,32 @@ namespace SistemaContable.Formularios
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LayoutMdi(MdiLayout.Cascade);
+            CatalogoUsuarios CatalogoUsuarios = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            CatalogoUsuarios.Show();
         }
 
         private void TileVerticalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LayoutMdi(MdiLayout.TileVertical);
+
         }
 
         private void TileHorizontalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LayoutMdi(MdiLayout.TileHorizontal);
+
         }
 
         private void ArrangeIconsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LayoutMdi(MdiLayout.ArrangeIcons);
+
         }
 
         private void CloseAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (Form childForm in MdiChildren)
-            {
-                childForm.Close();
-            }
+
         }
 
         private void MD_Load(object sender, EventArgs e)
@@ -164,6 +167,17 @@ namespace SistemaContable.Formularios
                 WindowState = FormWindowState.Maximized
             };
             CuentasPorCobrarPagar.Show();
+        }
+
+        private void catalogoDeClientesProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CatalogoClientesProveedores CatalogoClientesProveedores = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            CatalogoClientesProveedores.Show();
+
         }
     }
 }
