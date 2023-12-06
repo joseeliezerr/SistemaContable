@@ -1,4 +1,5 @@
-﻿using SistemaContable.Formularios.Operaciones;
+﻿using SistemaContable.Formularios.Configuraciones;
+using SistemaContable.Formularios.Operaciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,12 +70,22 @@ namespace SistemaContable.Formularios
 
         private void ToolBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            FechasModulares FechasModulares = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            FechasModulares.Show();
         }
 
         private void StatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            statusStrip.Visible = statusBarToolStripMenuItem.Checked;
+            PeriodosContables PeriodosContables = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            PeriodosContables.Show();
         }
 
         private void CascadeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,6 +166,6 @@ namespace SistemaContable.Formularios
             CuentasPorCobrarPagar.Show();
         }
     }
-    }
+}
 
 

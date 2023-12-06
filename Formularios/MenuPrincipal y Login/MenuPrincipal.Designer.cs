@@ -173,7 +173,7 @@
             toolBarToolStripMenuItem.CheckOnClick = true;
             toolBarToolStripMenuItem.Image = (Image)resources.GetObject("toolBarToolStripMenuItem.Image");
             toolBarToolStripMenuItem.Name = "toolBarToolStripMenuItem";
-            toolBarToolStripMenuItem.Size = new Size(219, 26);
+            toolBarToolStripMenuItem.Size = new Size(224, 26);
             toolBarToolStripMenuItem.Text = "Fechas Modulares";
             toolBarToolStripMenuItem.Click += ToolBarToolStripMenuItem_Click;
             // 
@@ -182,7 +182,7 @@
             statusBarToolStripMenuItem.CheckOnClick = true;
             statusBarToolStripMenuItem.Image = (Image)resources.GetObject("statusBarToolStripMenuItem.Image");
             statusBarToolStripMenuItem.Name = "statusBarToolStripMenuItem";
-            statusBarToolStripMenuItem.Size = new Size(219, 26);
+            statusBarToolStripMenuItem.Size = new Size(224, 26);
             statusBarToolStripMenuItem.Text = "Periodos Contables";
             statusBarToolStripMenuItem.Click += StatusBarToolStripMenuItem_Click;
             // 

@@ -13,6 +13,12 @@
     <Compile Update="Formularios\Catalogos\CatalogoTransacciones.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\Configuraciones\FechasModulares.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Formularios\Configuraciones\PeriodosContables.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\MenuPrincipal y Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
