@@ -1,6 +1,7 @@
 ﻿using SistemaContable.Formularios.Administracion;
 using SistemaContable.Formularios.Configuraciones;
 using SistemaContable.Formularios.Operaciones;
+using SistemaContable.Historicos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -178,6 +179,16 @@ namespace SistemaContable.Formularios
             };
             CatalogoClientesProveedores.Show();
 
+        }
+
+        private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoricoSaldosPorPeriodo HistoricoSaldosPorPeriodo = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            HistoricoSaldosPorPeriodo.Show();
         }
     }
 }

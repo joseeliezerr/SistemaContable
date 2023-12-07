@@ -25,6 +25,9 @@
     <Compile Update="Formularios\Configuraciones\PeriodosContables.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\Historicos\HistoricoSaldosPorPeriodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\MenuPrincipal y Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>

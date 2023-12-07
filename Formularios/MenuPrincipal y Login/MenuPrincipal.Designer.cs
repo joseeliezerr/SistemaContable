@@ -263,6 +263,7 @@
             contentsToolStripMenuItem.ShowShortcutKeys = false;
             contentsToolStripMenuItem.Size = new Size(288, 26);
             contentsToolStripMenuItem.Text = "Historico Saldos Por Periodo";
+            contentsToolStripMenuItem.Click += contentsToolStripMenuItem_Click;
             // 
             // toolStripSeparator8
             // 
@@ -292,6 +293,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1435, 720);
             Controls.Add(statusStrip);

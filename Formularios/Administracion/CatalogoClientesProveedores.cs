@@ -35,7 +35,7 @@ namespace SistemaContable.Formularios.Administracion
             LimpiarCampos();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             // Obtén los valores de los controles TextBox de tu formulario
             string Nombre = textBoxUsuario.Text.Trim();
