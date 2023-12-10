@@ -1,54 +1,61 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SistemaContable.Formularios.Operaciones
 {
     public partial class CuentasPorCobrarPagar : Form
     {
-        private List<string> nombresClientesProveedores = new List<string>();
+        private readonly List<string> nombresClientesProveedores = new();
         public CuentasPorCobrarPagar()
         {
             InitializeComponent();
-            comboBoxClientesProveedores.TextChanged += comboBoxClientesProveedores_TextChanged;
+        
 
-            // Cargar la lista de nombres al iniciar
-            CargarClienteoProveedor();
+          
+           
         }
         private void CargarClienteoProveedor()
         {
-            // Asegúrate de que la lista esté vacía antes de llenarla
-            nombresClientesProveedores.Clear();
+            List<ClienteProveedorItem> nombresClientesProveedores = new();
+            string query = "SELECT IdClienteProveedor, Nombre FROM ClientesProveedores";
 
-            string query = "SELECT DISTINCT Nombre FROM ClientesProveedores";
-
-            ConexionSql conexionSql = new ConexionSql();
+            ConexionSql conexionSql = new ();
             using (SqlConnection conexion = conexionSql.AbrirConexion())
             {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                using SqlCommand command = new(query, conexion);
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    nombresClientesProveedores.Add(new ClienteProveedorItem
                     {
-                        while (reader.Read())
-                        {
-                            nombresClientesProveedores.Add(reader["Nombre"].ToString());
-                        }
-                    }
+                        Id = Convert.ToInt32(reader["IdClienteProveedor"]),
+                        Nombre = reader["Nombre"].ToString()
+                    });
                 }
             }
 
-            // Limpia los ítems del ComboBox antes de añadir nuevos para evitar duplicados
-            comboBoxClientesProveedores.Items.Clear();
-            comboBoxClientesProveedores.Items.AddRange(nombresClientesProveedores.ToArray());
+
+            comboBoxClientesProveedores.DataSource = nombresClientesProveedores;
+            comboBoxClientesProveedores.DisplayMember = "Nombre";
+            comboBoxClientesProveedores.ValueMember = "Id";
+
+
+            comboBoxClientesProveedores.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBoxClientesProveedores.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
+        public class ClienteProveedorItem
+        {
+            public int Id { get; set; }
+            public string Nombre { get; set; }
+
+            public override string ToString()
+            {
+                return Nombre; // Esto es lo que se mostrará en el combobox
+            }
+        }
+
 
         private void AjustarDgv()
         {
@@ -99,111 +106,106 @@ namespace SistemaContable.Formularios.Operaciones
             CuentasPorCobrarPagar c
             INNER JOIN ClientesProveedores cp ON c.IdClienteProveedor = cp.IdClienteProveedor";
 
-            ConexionSql conexionSql = new ConexionSql();
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
+            ConexionSql conexionSql = new();
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            SqlCommand command = new(query, conexion);
+            SqlDataAdapter adapter = new(command);
+            DataTable table = new();
+            adapter.Fill(table);
+
+            // Asigna el DataTable como DataSource para el DataGridView
+            dtgCuentasCobrarPagar.DataSource = table;
+
+            // Configurar el DataGridView para ocultar la columna IdClienteProveedor si está presente
+            if (dtgCuentasCobrarPagar.Columns["IdClienteProveedor"] != null)
             {
-                SqlCommand command = new SqlCommand(query, conexion);
-                SqlDataAdapter adapter = new SqlDataAdapter(command);
-                DataTable table = new DataTable();
-                adapter.Fill(table);
-
-                // Asigna el DataTable como DataSource para el DataGridView
-                dtgCuentasCobrarPagar.DataSource = table;
-
-                // Configurar el DataGridView para ocultar la columna IdClienteProveedor si está presente
-                if (dtgCuentasCobrarPagar.Columns["IdClienteProveedor"] != null)
-                {
-                    dtgCuentasCobrarPagar.Columns["IdClienteProveedor"].Visible = false;
-                }
-
-                // Opcionalmente, puedes configurar los nombres de las columnas para que sean más amigables para el usuario
-                dtgCuentasCobrarPagar.Columns["NombreClienteProveedor"].HeaderText = "Cliente/Proveedor";
-                dtgCuentasCobrarPagar.Columns["TipoClienteProveedor"].HeaderText = "Tipo";
-                dtgCuentasCobrarPagar.Columns["Saldo"].HeaderText = "Saldo";
-                dtgCuentasCobrarPagar.Columns["FechaVencimiento"].HeaderText = "Fecha de Vencimiento";
-                dtgCuentasCobrarPagar.Columns["TipoCuenta"].HeaderText = "Tipo de Cuenta";
+                dtgCuentasCobrarPagar.Columns["IdClienteProveedor"].Visible = false;
             }
+
+            // Opcionalmente, puedes configurar los nombres de las columnas para que sean más amigables para el usuario
+            dtgCuentasCobrarPagar.Columns["NombreClienteProveedor"].HeaderText = "Cliente/Proveedor";
+            dtgCuentasCobrarPagar.Columns["TipoClienteProveedor"].HeaderText = "Tipo";
+            dtgCuentasCobrarPagar.Columns["Saldo"].HeaderText = "Saldo";
+            dtgCuentasCobrarPagar.Columns["FechaVencimiento"].HeaderText = "Fecha de Vencimiento";
+            dtgCuentasCobrarPagar.Columns["TipoCuenta"].HeaderText = "Tipo de Cuenta";
         }
 
 
         private void Button1_Click(object sender, EventArgs e)
         {
-
-            int idClienteProveedor = Convert.ToInt32(comboBoxClientesProveedores.SelectedValue);
-            float saldo;
-            bool isSaldoValid = float.TryParse(textBoxMonto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out saldo);
+          
             if (comboBoxClientesProveedores.SelectedItem == null)
             {
                 MessageBox.Show("Por favor, seleccione un cliente o proveedor.");
                 return;
             }
 
-            // Validar Saldo
-            if (string.IsNullOrWhiteSpace(textBoxMonto.Text))
+           
+            Debug.WriteLine("SelectedValue: " + comboBoxClientesProveedores.SelectedValue);
+
+            if (comboBoxClientesProveedores.SelectedValue != null &&
+                int.TryParse(comboBoxClientesProveedores.SelectedValue.ToString(), out int idClienteProveedor))
             {
-                MessageBox.Show("Por favor, ingrese el saldo.");
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un cliente o proveedor válido.");
                 return;
             }
-            _ = float.TryParse(textBoxMonto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out saldo);
-            if (!isSaldoValid)
+
+            if (!float.TryParse(textBoxMonto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out float saldo))
             {
                 MessageBox.Show("Por favor, ingrese un saldo válido.");
                 return;
             }
-
 
             if (comboBoxCuenta.SelectedItem == null || string.IsNullOrWhiteSpace(comboBoxCuenta.SelectedItem.ToString()))
             {
                 MessageBox.Show("Por favor, seleccione el tipo de cuenta.");
                 return;
             }
+
             DateTime fechaVencimiento = dateTimePicker1.Value;
 
-            // Utiliza tu clase ConexionSql para obtener la conexión
-            ConexionSql conexionSql = new ConexionSql();
+            ConexionSql conexionSql = new();
+            string queryInsercion = "INSERT INTO CuentasPorCobrarPagar (IdClienteProveedor, Saldo, FechaVencimiento, TipoCuenta) VALUES (@IdClienteProveedor, @Saldo, @FechaVencimiento, @TipoCuenta)";
 
-            // Define la consulta SQL para insertar los datos
-            string query = "INSERT INTO CuentasPorCobrarPagar (IdClienteProveedor, Saldo, FechaVencimiento, TipoCuenta) VALUES (@IdClienteProveedor, @Saldo, @FechaVencimiento, @TipoCuenta)";
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            using SqlCommand commandInsercion = new(queryInsercion, conexion);
+            commandInsercion.Parameters.AddWithValue("@IdClienteProveedor", idClienteProveedor);
+            commandInsercion.Parameters.AddWithValue("@Saldo", saldo);
+            commandInsercion.Parameters.AddWithValue("@FechaVencimiento", fechaVencimiento);
+            commandInsercion.Parameters.AddWithValue("@TipoCuenta", comboBoxCuenta.SelectedItem.ToString());
 
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                int result = commandInsercion.ExecuteNonQuery();
+                if (result > 0)
                 {
-                    // Agrega los parámetros al comando para evitar la inyección SQL
-                    command.Parameters.AddWithValue("@IdClienteProveedor", idClienteProveedor);
-                    command.Parameters.AddWithValue("@Saldo", saldo);
-                    command.Parameters.AddWithValue("@FechaVencimiento", fechaVencimiento);
-                    string tipoCuenta = comboBoxCuenta.SelectedItem.ToString();
-                    command.Parameters.AddWithValue("@TipoCuenta", tipoCuenta);
-
-                    try
-                    {
-                        // Ejecuta el comando y verifica el resultado
-                        int result = command.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-                            CargarDatosDtg();
-                            LimpiarCampos();
-
-                            MessageBox.Show("Registro guardado con éxito.");
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se insertaron registros.");
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        // Maneja cualquier excepción durante el proceso de inserción
-                        MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Registro guardado con éxito.");
+                    CargarDatosDtg();
+                    LimpiarCampos();
+                }
+                else
+                {
+                    MessageBox.Show("No se insertaron registros.");
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
 
         }
 
-        private void dtgCuentasCobrarPagar_CellClick(object sender, DataGridViewCellEventArgs e)
+
+
+
+        private void DtgCuentasCobrarPagar_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar si se ha seleccionado una fila en el DataGrid
             if (e.RowIndex >= 0)
@@ -220,7 +222,7 @@ namespace SistemaContable.Formularios.Operaciones
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             // Asegúrate de que haya una fila seleccionada
             if (dtgCuentasCobrarPagar.SelectedRows.Count != 1)
@@ -241,44 +243,40 @@ namespace SistemaContable.Formularios.Operaciones
                 int idCuenta = Convert.ToInt32(dtgCuentasCobrarPagar.SelectedRows[0].Cells["IdCuenta"].Value);
 
                 // Utiliza tu clase ConexionSql para obtener la conexión
-                ConexionSql conexionSql = new ConexionSql();
+                ConexionSql conexionSql = new();
 
                 // Define la consulta SQL para eliminar los datos
                 string query = "DELETE FROM CuentasPorCobrarPagar WHERE IdCuenta = @IdCuenta";
 
-                using (SqlConnection conexion = conexionSql.AbrirConexion())
+                using SqlConnection conexion = conexionSql.AbrirConexion();
+                using SqlCommand command = new(query, conexion);
+                // Agrega el parámetro al comando para evitar la inyección SQL
+                command.Parameters.AddWithValue("@IdCuenta", idCuenta);
+
+                try
                 {
-                    using (SqlCommand command = new SqlCommand(query, conexion))
+                    // Ejecuta el comando y verifica el resultado
+                    int result = command.ExecuteNonQuery();
+                    if (result > 0)
                     {
-                        // Agrega el parámetro al comando para evitar la inyección SQL
-                        command.Parameters.AddWithValue("@IdCuenta", idCuenta);
+                        CargarDatosDtg();
+                        LimpiarCampos();
+                        MessageBox.Show("Registro eliminado con éxito.");
 
-                        try
-                        {
-                            // Ejecuta el comando y verifica el resultado
-                            int result = command.ExecuteNonQuery();
-                            if (result > 0)
-                            {
-                                CargarDatosDtg();
-                                LimpiarCampos();
-                                MessageBox.Show("Registro eliminado con éxito.");
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("No se encontró el registro para eliminar.");
-                            }
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("No se encontró el registro para eliminar.");
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxId.Text))
             {
@@ -290,90 +288,57 @@ namespace SistemaContable.Formularios.Operaciones
 
             // A continuación se obtienen los valores de los controles del formulario para los otros campos
             int idClienteProveedor = Convert.ToInt32(comboBoxClientesProveedores.SelectedValue);
-            float saldo;
-            bool isSaldoValid = float.TryParse(textBoxMonto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out saldo);
+            bool isSaldoValid = float.TryParse(textBoxMonto.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out float saldo);
             if (!isSaldoValid)
             {
                 MessageBox.Show("Por favor, ingrese un saldo válido.");
                 return;
             }
             DateTime fechaVencimiento = dateTimePicker1.Value;
-            string tipoCuenta = comboBoxCuenta.SelectedItem.ToString();
-
-            ConexionSql conexionSql = new ConexionSql();
+            ConexionSql conexionSql = new();
             string query = @"
     UPDATE CuentasPorCobrarPagar
     SET IdClienteProveedor = @IdClienteProveedor, Saldo = @Saldo, FechaVencimiento = @FechaVencimiento, TipoCuenta = @TipoCuenta
     WHERE IdCuenta = @IdCuenta";
 
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            using SqlCommand command = new(query, conexion);
+            // Agrega los parámetros al comando para evitar la inyección SQL
+            command.Parameters.AddWithValue("@IdCuenta", idCuenta);
+            command.Parameters.AddWithValue("@IdClienteProveedor", idClienteProveedor);
+            command.Parameters.AddWithValue("@Saldo", saldo);
+            command.Parameters.AddWithValue("@FechaVencimiento", fechaVencimiento);
+            string tipoCuenta = comboBoxCuenta.SelectedItem.ToString();
+            command.Parameters.AddWithValue("@TipoCuenta", tipoCuenta);
+
+            try
             {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                // Ejecuta el comando y verifica el resultado
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
                 {
-                    // Agrega los parámetros al comando para evitar la inyección SQL
-                    command.Parameters.AddWithValue("@IdCuenta", idCuenta);
-                    command.Parameters.AddWithValue("@IdClienteProveedor", idClienteProveedor);
-                    command.Parameters.AddWithValue("@Saldo", saldo);
-                    command.Parameters.AddWithValue("@FechaVencimiento", fechaVencimiento);
-                    command.Parameters.AddWithValue("@TipoCuenta", tipoCuenta);
+                    CargarDatosDtg();
+                    LimpiarCampos();
+                    MessageBox.Show("Registro actualizado con éxito.");
 
-                    try
-                    {
-                        // Ejecuta el comando y verifica el resultado
-                        int result = command.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-                            CargarDatosDtg();
-                            LimpiarCampos();
-                            MessageBox.Show("Registro actualizado con éxito.");
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se encontró el registro para actualizar.");
-                        }
-                    }
-                    catch (SqlException ex)
-                    {
-                        // Maneja cualquier excepción durante el proceso de actualización
-                        MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el registro para actualizar.");
                 }
             }
+            catch (SqlException ex)
+            {
+                // Maneja cualquier excepción durante el proceso de actualización
+                MessageBox.Show("Error al conectar con la base de datos: " + ex.Message, "Error de Conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
 
-        private void comboBoxClientesProveedores_TextChanged(object sender, EventArgs e)
-        {
-            // Desconecta el evento para prevenir la recursión infinita y duplicación
-            comboBoxClientesProveedores.TextChanged -= comboBoxClientesProveedores_TextChanged;
-
-            string searchText = comboBoxClientesProveedores.Text;
-            comboBoxClientesProveedores.Items.Clear(); // Asegúrate de limpiar los items antes de agregar los nuevos
-
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                // Filtra los nombres que coincidan con el texto introducido
-                var filteredItems = nombresClientesProveedores.Where(nombre => nombre.ToLower().Contains(searchText.ToLower()));
-                comboBoxClientesProveedores.Items.AddRange(filteredItems.ToArray());
-            }
-            else
-            {
-                // Si no hay texto de búsqueda, añade todos los nombres de nuevo
-                comboBoxClientesProveedores.Items.AddRange(nombresClientesProveedores.ToArray());
-            }
-
-            // Restablece el texto y la posición del cursor
-            comboBoxClientesProveedores.Text = searchText;
-            comboBoxClientesProveedores.SelectionStart = searchText.Length;
-
-            // Vuelve a conectar el evento
-            comboBoxClientesProveedores.TextChanged += comboBoxClientesProveedores_TextChanged;
-
-        }
+       
 
     }
-    }
+}
 
 

@@ -58,7 +58,7 @@
             button3.TabIndex = 20;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button2
             // 
@@ -71,7 +71,7 @@
             button2.TabIndex = 19;
             button2.Text = "Modificar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // button1
             // 
@@ -97,7 +97,7 @@
             buttonNuevo.TabIndex = 17;
             buttonNuevo.Text = "Nuevo";
             buttonNuevo.UseVisualStyleBackColor = false;
-            buttonNuevo.Click += buttonNuevo_Click;
+            buttonNuevo.Click += ButtonNuevo_Click;
             // 
             // dtgCatalogoUsuarios
             // 
@@ -112,7 +112,7 @@
             dtgCatalogoUsuarios.RowTemplate.Height = 29;
             dtgCatalogoUsuarios.Size = new Size(1432, 804);
             dtgCatalogoUsuarios.TabIndex = 16;
-            dtgCatalogoUsuarios.CellClick += dtgCatalogoUsuarios_CellClick;
+            dtgCatalogoUsuarios.CellClick += DtgCatalogoUsuarios_CellClick;
             // 
             // label1
             // 

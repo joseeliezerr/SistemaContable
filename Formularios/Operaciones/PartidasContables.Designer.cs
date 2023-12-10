@@ -42,6 +42,7 @@
             label3 = new Label();
             label4 = new Label();
             comboBoxCuentas = new ComboBox();
+            buttonReporte = new Button();
             ((System.ComponentModel.ISupportInitialize)dtgPartidaContable).BeginInit();
             SuspendLayout();
             // 
@@ -50,7 +51,7 @@
             button3.BackColor = Color.Red;
             button3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(1195, 167);
+            button3.Location = new Point(1109, 177);
             button3.Name = "button3";
             button3.Size = new Size(94, 45);
             button3.TabIndex = 14;
@@ -63,7 +64,7 @@
             button2.BackColor = Color.Yellow;
             button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             button2.ForeColor = Color.Black;
-            button2.Location = new Point(1090, 167);
+            button2.Location = new Point(1004, 177);
             button2.Name = "button2";
             button2.Size = new Size(94, 45);
             button2.TabIndex = 13;
@@ -76,7 +77,7 @@
             button1.BackColor = Color.FromArgb(255, 128, 0);
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(990, 167);
+            button1.Location = new Point(904, 177);
             button1.Name = "button1";
             button1.Size = new Size(94, 45);
             button1.TabIndex = 12;
@@ -89,7 +90,7 @@
             buttonNuevo.BackColor = SystemColors.MenuHighlight;
             buttonNuevo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             buttonNuevo.ForeColor = Color.White;
-            buttonNuevo.Location = new Point(890, 167);
+            buttonNuevo.Location = new Point(804, 177);
             buttonNuevo.Name = "buttonNuevo";
             buttonNuevo.Size = new Size(94, 45);
             buttonNuevo.TabIndex = 11;
@@ -193,11 +194,25 @@
             comboBoxCuentas.Size = new Size(251, 28);
             comboBoxCuentas.TabIndex = 22;
             // 
+            // buttonReporte
+            // 
+            buttonReporte.BackColor = Color.OliveDrab;
+            buttonReporte.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonReporte.ForeColor = Color.White;
+            buttonReporte.Location = new Point(1220, 177);
+            buttonReporte.Name = "buttonReporte";
+            buttonReporte.Size = new Size(121, 45);
+            buttonReporte.TabIndex = 24;
+            buttonReporte.Text = "Ver Reporte";
+            buttonReporte.UseVisualStyleBackColor = false;
+            buttonReporte.Click += Button4_Click;
+            // 
             // PartidasContables
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1471, 968);
+            Controls.Add(buttonReporte);
             Controls.Add(label4);
             Controls.Add(comboBoxCuentas);
             Controls.Add(label3);
@@ -236,5 +251,6 @@
         private Label label3;
         private Label label4;
         private ComboBox comboBoxCuentas;
+        private Button buttonReporte;
     }
 }

@@ -9,22 +9,65 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.2" />
+    <PackageReference Include="itext7" Version="8.0.2" />
+    <PackageReference Include="itext7.bouncy-castle-adapter" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="4.0.0" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="160.1000.6" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+    <PackageReference Include="ReportViewerCore.NETCore" Version="15.1.19" />
+    <PackageReference Include="ReportViewerCore.WinForms" Version="15.1.19" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
+    <Compile Update="SistemaContableDataSet2.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>SistemaContableDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="SistemaContableDataSet3.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SistemaContableDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="SistemaContableDataSet4.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SistemaContableDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="SistemaContableDataSet5.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SistemaContableDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Update="SistemaContableDataSet6.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>SistemaContableDataSet6.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <None Update="SistemaContableDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaContableDataSet2.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="SistemaContableDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaContableDataSet3.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="SistemaContableDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaContableDataSet4.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="SistemaContableDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaContableDataSet5.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="SistemaContableDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SistemaContableDataSet6.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
+
 
 </Project>

@@ -58,7 +58,7 @@
             dtgCuentasCobrarPagar.RowTemplate.Height = 29;
             dtgCuentasCobrarPagar.Size = new Size(1504, 719);
             dtgCuentasCobrarPagar.TabIndex = 11;
-            dtgCuentasCobrarPagar.CellClick += dtgCuentasCobrarPagar_CellClick;
+            dtgCuentasCobrarPagar.CellClick += DtgCuentasCobrarPagar_CellClick;
             // 
             // button3
             // 
@@ -71,7 +71,7 @@
             button3.TabIndex = 18;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button2
             // 
@@ -84,7 +84,7 @@
             button2.TabIndex = 17;
             button2.Text = "Modificar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // button1
             // 
@@ -137,7 +137,7 @@
             comboBoxClientesProveedores.Name = "comboBoxClientesProveedores";
             comboBoxClientesProveedores.Size = new Size(251, 28);
             comboBoxClientesProveedores.TabIndex = 24;
-            comboBoxClientesProveedores.TextChanged += comboBoxClientesProveedores_TextChanged;
+         //   comboBoxClientesProveedores.TextChanged += ComboBoxClientesProveedores_TextChanged;
           //  comboBoxClientesProveedores.KeyUp += comboBoxClientesProveedores_KeyUp;
             // 
             // label3

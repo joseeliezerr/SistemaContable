@@ -1,7 +1,10 @@
 ﻿using SistemaContable.Formularios.Administracion;
 using SistemaContable.Formularios.Configuraciones;
+using SistemaContable.Formularios.Historicos;
 using SistemaContable.Formularios.Operaciones;
 using SistemaContable.Historicos;
+using SistemaContable.Reportes.Movimientos_Diarios;
+using SistemaContable.Reportes.Movimientos_Por_Cuenta;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +14,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.Collections.Generic;
+
+
 
 namespace SistemaContable.Formularios
 {
@@ -157,6 +164,10 @@ namespace SistemaContable.Formularios
                 MdiParent = this,
                 WindowState = FormWindowState.Maximized
             };
+
+            // Asumiendo que el botón que quieres ocultar se llama 'btnMiBoton' y es de acceso público
+            PartidasContables.OcultarBoton();
+
             PartidasContables.Show();
         }
 
@@ -170,7 +181,7 @@ namespace SistemaContable.Formularios
             CuentasPorCobrarPagar.Show();
         }
 
-        private void catalogoDeClientesProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CatalogoDeClientesProveedoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CatalogoClientesProveedores CatalogoClientesProveedores = new()
             {
@@ -181,7 +192,7 @@ namespace SistemaContable.Formularios
 
         }
 
-        private void contentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ContentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             HistoricoSaldosPorPeriodo HistoricoSaldosPorPeriodo = new()
             {
@@ -190,7 +201,53 @@ namespace SistemaContable.Formularios
             };
             HistoricoSaldosPorPeriodo.Show();
         }
+
+        private void HistoricoValorDeConversiónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoricoValorConversion HistoricoValorConversion = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            HistoricoValorConversion.Show();
+        }
+
+        private void OptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovimientosDiarios MovimientosDiarios = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            MovimientosDiarios.Show();
+        }
+
+        private void MovimientosPorCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MovimientosPorCuenta MovimientosPorCuenta = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            MovimientosPorCuenta.Show();
+        }
+
+
+        private void BalanceGeneralToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PartidasContables PartidasContables = new()
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            PartidasContables.Show();
+
+        }
     }
+
 }
+
+
+
 
 

@@ -64,7 +64,7 @@
             button3.TabIndex = 24;
             button3.Text = "Eliminar";
             button3.UseVisualStyleBackColor = false;
-            button3.Click += button3_Click;
+            button3.Click += Button3_Click;
             // 
             // button2
             // 
@@ -77,7 +77,7 @@
             button2.TabIndex = 23;
             button2.Text = "Modificar";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            button2.Click += Button2_Click;
             // 
             // button1
             // 
@@ -90,7 +90,7 @@
             button1.TabIndex = 22;
             button1.Text = "Guardar";
             button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            button1.Click += Button1_Click;
             // 
             // buttonNuevo
             // 
@@ -103,7 +103,7 @@
             buttonNuevo.TabIndex = 21;
             buttonNuevo.Text = "Nuevo";
             buttonNuevo.UseVisualStyleBackColor = false;
-            buttonNuevo.Click += buttonNuevo_Click;
+            buttonNuevo.Click += ButtonNuevo_Click;
             // 
             // dtgHistoricoSPP
             // 
@@ -118,7 +118,7 @@
             dtgHistoricoSPP.RowTemplate.Height = 29;
             dtgHistoricoSPP.Size = new Size(1466, 700);
             dtgHistoricoSPP.TabIndex = 20;
-            dtgHistoricoSPP.CellClick += dtgHistoricoSPP_CellClick;
+            dtgHistoricoSPP.CellClick += DtgHistoricoSPP_CellClick;
             // 
             // comboBoxPeriodo
             // 

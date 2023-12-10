@@ -19,8 +19,8 @@ namespace SistemaContable.Historicos
     public partial class HistoricoSaldosPorPeriodo : Form
     {
 
-        List<Cuenta> CuentasContables = new List<Cuenta>();
-        List<Periodo> periodoscontables = new List<Periodo>();
+        readonly List<Cuenta> CuentasContables = new();
+        readonly List<Periodo> periodoscontables = new();
 
 
         public HistoricoSaldosPorPeriodo()
@@ -118,7 +118,7 @@ INNER JOIN
             textBoxSaldoInicial.Clear();
             textBoxSaldoFinal.Clear();
         }
-        private void buttonNuevo_Click(object sender, EventArgs e)
+        private void ButtonNuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
 
@@ -132,22 +132,18 @@ INNER JOIN
 
             string query = "SELECT IdPeriodo, FechaInicio, FechaFin FROM PeriodosContables";
 
-            ConexionSql conexionSql = new ConexionSql();
+            ConexionSql conexionSql = new();
             using (SqlConnection conexion = conexionSql.AbrirConexion())
             {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                using SqlCommand command = new(query, conexion);
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int idPeriodo = reader.GetInt32(reader.GetOrdinal("IdPeriodo"));
-                            string fechaInicio = reader.GetDateTime(reader.GetOrdinal("FechaInicio")).ToString("dd/MM/yyyy");
-                            string fechaFin = reader.GetDateTime(reader.GetOrdinal("FechaFin")).ToString("dd/MM/yyyy");
-                            string displayValue = $"{fechaInicio} a {fechaFin}";
-                            periodoscontables.Add(new Periodo(idPeriodo, displayValue));
-                        }
-                    }
+                    int idPeriodo = reader.GetInt32(reader.GetOrdinal("IdPeriodo"));
+                    string fechaInicio = reader.GetDateTime(reader.GetOrdinal("FechaInicio")).ToString("dd/MM/yyyy");
+                    string fechaFin = reader.GetDateTime(reader.GetOrdinal("FechaFin")).ToString("dd/MM/yyyy");
+                    string displayValue = $"{fechaInicio} a {fechaFin}";
+                    periodoscontables.Add(new Periodo(idPeriodo, displayValue));
                 }
             }
 
@@ -161,20 +157,16 @@ INNER JOIN
         {
             string query = "SELECT IdCuenta, NombreCuenta FROM CatalogoContable";
 
-            ConexionSql conexionSql = new ConexionSql();
+            ConexionSql conexionSql = new();
             using (SqlConnection conexion = conexionSql.AbrirConexion())
             {
-                using (SqlCommand command = new SqlCommand(query, conexion))
+                using SqlCommand command = new(query, conexion);
+                using SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int idCuenta = reader.GetInt32(reader.GetOrdinal("IdCuenta"));
-                            string nombreCuenta = reader.GetString(reader.GetOrdinal("NombreCuenta"));
-                            CuentasContables.Add(new Cuenta(idCuenta, nombreCuenta));
-                        }
-                    }
+                    int idCuenta = reader.GetInt32(reader.GetOrdinal("IdCuenta"));
+                    string nombreCuenta = reader.GetString(reader.GetOrdinal("NombreCuenta"));
+                    CuentasContables.Add(new Cuenta(idCuenta, nombreCuenta));
                 }
             }
             comboBoxCuenta.DataSource = CuentasContables;
@@ -191,13 +183,11 @@ INNER JOIN
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            // Asegúrate de que los SelectedValue no sean null antes de la conversión
-            int idPeriodo = 0;
-            int idCuenta = 0;
-            decimal saldoInicial, saldoFinal;
 
+            // Asegúrate de que los SelectedValue no sean null antes de la conversión
+            int idPeriodo;
             // Asegúrate de que los ComboBoxes tienen valores seleccionados
             if (comboBoxPeriodo.SelectedValue == null)
             {
@@ -209,6 +199,7 @@ INNER JOIN
                 idPeriodo = Convert.ToInt32(comboBoxPeriodo.SelectedValue);
             }
 
+            int idCuenta;
             try
             {
                 idCuenta = Convert.ToInt32(comboBoxCuenta.SelectedValue);
@@ -222,14 +213,14 @@ INNER JOIN
 
 
             // Comprueba si los campos de saldo inicial y final son números válidos y no están vacíos
-            bool esSaldoInicialValido = decimal.TryParse(textBoxSaldoInicial.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out saldoInicial);
+            bool esSaldoInicialValido = decimal.TryParse(textBoxSaldoInicial.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal saldoInicial);
             if (!esSaldoInicialValido)
             {
                 MessageBox.Show("Por favor, ingrese un saldo inicial válido.");
                 return;
             }
 
-            bool esSaldoFinalValido = decimal.TryParse(textBoxSaldoFinal.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out saldoFinal);
+            bool esSaldoFinalValido = decimal.TryParse(textBoxSaldoFinal.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal saldoFinal);
             if (!esSaldoFinalValido)
             {
                 MessageBox.Show("Por favor, ingrese un saldo final válido.");
@@ -243,45 +234,43 @@ INNER JOIN
             // Define la consulta SQL para insertar los datos
             string query = "INSERT INTO HistoricoSaldosPorPeriodo (IdPeriodo, IdCuenta, SaldoInicial, SaldoFinal) VALUES (@IdPeriodo, @IdCuenta, @SaldoInicial, @SaldoFinal)";
 
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
-            using (SqlCommand command = new(query, conexion))
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            using SqlCommand command = new(query, conexion);
+            // Especifica el tipo de los parámetros
+            command.Parameters.Add("@IdPeriodo", SqlDbType.Int).Value = idPeriodo;
+            command.Parameters.Add("@IdCuenta", SqlDbType.Int).Value = idCuenta;
+            command.Parameters.Add("@SaldoInicial", SqlDbType.Decimal);
+            command.Parameters["@SaldoInicial"].Precision = 18; // Suponiendo que tienes una precisión de 18
+            command.Parameters["@SaldoInicial"].Scale = 2; // Suponiendo que quieres 2 decimales
+            command.Parameters["@SaldoInicial"].Value = saldoInicial;
+
+            command.Parameters.Add("@SaldoFinal", SqlDbType.Decimal);
+            command.Parameters["@SaldoFinal"].Precision = 18; // Suponiendo que tienes una precisión de 18
+            command.Parameters["@SaldoFinal"].Scale = 2; // Suponiendo que quieres 2 decimales
+            command.Parameters["@SaldoFinal"].Value = saldoFinal;
+
+
+            try
             {
-                // Especifica el tipo de los parámetros
-                command.Parameters.Add("@IdPeriodo", SqlDbType.Int).Value = idPeriodo;
-                command.Parameters.Add("@IdCuenta", SqlDbType.Int).Value = idCuenta;
-                command.Parameters.Add("@SaldoInicial", SqlDbType.Decimal);
-                command.Parameters["@SaldoInicial"].Precision = 18; // Suponiendo que tienes una precisión de 18
-                command.Parameters["@SaldoInicial"].Scale = 2; // Suponiendo que quieres 2 decimales
-                command.Parameters["@SaldoInicial"].Value = saldoInicial;
-
-                command.Parameters.Add("@SaldoFinal", SqlDbType.Decimal);
-                command.Parameters["@SaldoFinal"].Precision = 18; // Suponiendo que tienes una precisión de 18
-                command.Parameters["@SaldoFinal"].Scale = 2; // Suponiendo que quieres 2 decimales
-                command.Parameters["@SaldoFinal"].Value = saldoFinal;
-
-
-                try
+                // Ejecuta el comando y verifica el resultado
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
                 {
-                    // Ejecuta el comando y verifica el resultado
-                    int result = command.ExecuteNonQuery();
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Registro guardado con éxito.");
-                        CargarDatos();
-                        LimpiarCampos();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se insertaron registros.");
-                    }
+                    MessageBox.Show("Registro guardado con éxito.");
+                    CargarDatos();
+                    LimpiarCampos();
                 }
-                catch (SqlException ex)
+                else
                 {
-                    // Maneja cualquier excepción durante el proceso de inserción
-                    MessageBox.Show("Error al realizar la operación en la base de datos: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("No se insertaron registros.");
                 }
-                // La conexión se cerrará automáticamente al salir del bloque using
             }
+            catch (SqlException ex)
+            {
+                // Maneja cualquier excepción durante el proceso de inserción
+                MessageBox.Show("Error al realizar la operación en la base de datos: " + ex.Message, "Error de Base de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            // La conexión se cerrará automáticamente al salir del bloque using
 
 
         }
@@ -311,32 +300,30 @@ INNER JOIN
 
 
             ConexionSql conexionSql = new();
-            using (SqlConnection conexion = conexionSql.AbrirConexion())
-            using (SqlCommand command = new SqlCommand(updateQuery, conexion))
-            {
-                command.Parameters.AddWithValue("@IdPeriodo", idPeriodo);
-                command.Parameters.AddWithValue("@IdCuenta", idCuenta);
-                command.Parameters.AddWithValue("@SaldoInicial", saldoInicial);
-                command.Parameters.AddWithValue("@SaldoFinal", saldoFinal);
-                command.Parameters.AddWithValue("@IdHistorico", idHistorico);
+            using SqlConnection conexion = conexionSql.AbrirConexion();
+            using SqlCommand command = new(updateQuery, conexion);
+            command.Parameters.AddWithValue("@IdPeriodo", idPeriodo);
+            command.Parameters.AddWithValue("@IdCuenta", idCuenta);
+            command.Parameters.AddWithValue("@SaldoInicial", saldoInicial);
+            command.Parameters.AddWithValue("@SaldoFinal", saldoFinal);
+            command.Parameters.AddWithValue("@IdHistorico", idHistorico);
 
-                try
+            try
+            {
+                int result = command.ExecuteNonQuery();
+                if (result > 0)
                 {
-                    int result = command.ExecuteNonQuery();
-                    if (result > 0)
-                    {
-                        MessageBox.Show("Registro modificado con éxito.");
-                        CargarDatos(); // Actualiza el DataGridView para reflejar los cambios.
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró el registro o no se necesitó actualizar.");
-                    }
+                    MessageBox.Show("Registro modificado con éxito.");
+                    CargarDatos(); // Actualiza el DataGridView para reflejar los cambios.
                 }
-                catch (SqlException ex)
+                else
                 {
-                    MessageBox.Show("Error al actualizar el registro: " + ex.Message);
+                    MessageBox.Show("No se encontró el registro o no se necesitó actualizar.");
                 }
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Error al actualizar el registro: " + ex.Message);
             }
         }
 
@@ -388,7 +375,7 @@ INNER JOIN
         }
 
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             // Eliminar un registro
             if (dtgHistoricoSPP.SelectedRows.Count == 0)
@@ -408,33 +395,31 @@ INNER JOIN
                 {
                   
                     string deleteQuery = "DELETE FROM HistoricoSaldosPorPeriodo WHERE IdHistorico = @IdHistorico";
-                    using (SqlCommand command = new(deleteQuery, conexionSql.AbrirConexion()))
+                    using SqlCommand command = new(deleteQuery, conexionSql.AbrirConexion());
+                    command.Parameters.AddWithValue("@IdHistorico", idHistorico);
+                    int result = command.ExecuteNonQuery();
+                    if (result > 0)
                     {
-                        command.Parameters.AddWithValue("@IdHistorico", idHistorico);
-                        int result = command.ExecuteNonQuery();
-                        if (result > 0)
-                        {
-                            MessageBox.Show("Registro eliminado con éxito.");
-                            CargarDatos();
-                        }
-                        else
-                        {
-                            MessageBox.Show("No se pudo eliminar el registro.");
-                        }
+                        MessageBox.Show("Registro eliminado con éxito.");
+                        CargarDatos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo eliminar el registro.");
                     }
                 }
             }
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             ModificarRegistro();
 
         
         }
 
-        private void dtgHistoricoSPP_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgHistoricoSPP_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar si se ha seleccionado una fila en el DataGrid
             if (e.RowIndex >= 0)
@@ -445,10 +430,8 @@ INNER JOIN
                 // Mostrar los valores de las columnas seleccionadas en los campos correspondientes
                 textBoxId.Text = row.Cells["IdHistorico"].Value.ToString();
                 comboBoxCuenta.Text = row.Cells["NombreCuenta"].Value.ToString();
-                DateTime fechaInicio;
-                DateTime fechaFin;
-                bool fechaInicioValida = DateTime.TryParse(row.Cells["FechaInicio"].Value.ToString(), out fechaInicio);
-                bool fechaFinValida = DateTime.TryParse(row.Cells["FechaFin"].Value.ToString(), out fechaFin);
+                bool fechaInicioValida = DateTime.TryParse(row.Cells["FechaInicio"].Value.ToString(), out DateTime fechaInicio);
+                bool fechaFinValida = DateTime.TryParse(row.Cells["FechaFin"].Value.ToString(), out DateTime fechaFin);
 
                 if (fechaInicioValida && fechaFinValida)
                 {

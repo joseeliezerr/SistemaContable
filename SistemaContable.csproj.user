@@ -28,6 +28,9 @@
     <Compile Update="Formularios\Historicos\HistoricoSaldosPorPeriodo.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Formularios\Historicos\HistoricoValorConversion.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Formularios\MenuPrincipal y Login\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -40,5 +43,34 @@
     <Compile Update="Formularios\Operaciones\PartidasContables.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Reportes\Movimientos Diarios\MovimientosDiarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reportes\Movimientos Por Cuenta\MovimientosPorCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="SistemaContableDataSet.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="SistemaContableDataSet6.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
 </Project>

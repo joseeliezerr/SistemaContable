@@ -1,15 +1,23 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Windows.Forms;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 namespace SistemaContable.Formularios
 {
@@ -93,6 +101,11 @@ namespace SistemaContable.Formularios
             CargarDatos();
             AjustarDgv();
         }
+        // Dentro de tu clase PartidasContables
+        public void OcultarBoton()
+        {
+            buttonReporte.Visible = false;
+        }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -121,7 +134,8 @@ namespace SistemaContable.Formularios
             cp.Descripcion AS Partida, 
             ip.Fecha, 
             ip.Monto, 
-            cc.NombreCuenta AS Cuenta 
+            cc.NombreCuenta AS Cuenta,
+            cc.TipoCuenta AS Tipo
         FROM 
             IngresoPartidasContable ip
             INNER JOIN CatalogoPartidas cp ON ip.IdPartida = cp.IdPartida
@@ -138,8 +152,8 @@ namespace SistemaContable.Formularios
             dtgPartidaContable.DataSource = table;
 
             // Ajusta el DataGridView para mostrar nombres descriptivos
-            dtgPartidaContable.Columns["Partida"].HeaderText = "Nombre de Partida";
-            dtgPartidaContable.Columns["Cuenta"].HeaderText = "Nombre de Cuenta";
+            dtgPartidaContable.Columns["Partida"].HeaderText = "NombrePartida";
+            dtgPartidaContable.Columns["Cuenta"].HeaderText = "NombreCuenta";
             // Otros ajustes de visualización, si son necesarios
             if (dtgPartidaContable.Columns.Contains("Monto"))
             {
@@ -213,7 +227,7 @@ namespace SistemaContable.Formularios
             // Comprobar si la tecla presionada no es un dígito ni un control (como backspace)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-               
+
                 if (e.KeyChar == '.' && !textBoxMonto.Text.Contains('.') && !textBoxMonto.Text.Contains('.'))
                 {
                     // Si es el principio del texto, agregar un 0 antes de la coma
@@ -369,6 +383,116 @@ namespace SistemaContable.Formularios
                 textBoxMonto.Text = row.Cells["Monto"].Value.ToString();
                 comboBoxCuentas.Text = row.Cells["Cuenta"].Value.ToString();
             }
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "PDF (*.pdf)|*.pdf",
+                FileName = "BalanceGeneral.pdf"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filename = saveFileDialog.FileName;
+
+                using PdfWriter writer = new(filename);
+                using PdfDocument pdf = new(writer);
+                using Document document = new(pdf);
+                Paragraph title = new Paragraph("Balance General")
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(14);
+                document.Add(title);
+
+                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 1, 2, 2, 2, 2, 2 }))
+                    .UseAllAvailableWidth();
+                table.AddHeaderCell("ID");
+                table.AddHeaderCell("Nombre de Partida");
+                table.AddHeaderCell("Fecha");
+                table.AddHeaderCell("Nombre de Cuenta");
+                table.AddHeaderCell("Monto");
+                table.AddHeaderCell("Tipo");
+
+                decimal totalActivos = 0;
+                decimal totalPasivos = 0;
+                decimal totalPatrimonio = 0;
+
+                // Asumimos que 'dtgPartidaContable' es tu DataGridView
+                foreach (DataGridViewRow row in dtgPartidaContable.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+
+                        string idRegistro = row.Cells["IdRegistro"].Value?.ToString() ?? "";
+                        string nombrePartida = row.Cells["Partida"].Value?.ToString() ?? ""; // Asegúrate de que esto coincida con el nombre de tu columna
+                        DateTime fecha = Convert.ToDateTime(row.Cells["Fecha"].Value);
+                        string nombreCuenta = row.Cells["Cuenta"].Value?.ToString() ?? ""; // Igual aquí
+                        decimal monto = Convert.ToDecimal(row.Cells["Monto"].Value);
+                        CultureInfo cultureInfo = new("es-HN");
+                        string formattedMonto = monto.ToString("C", cultureInfo);
+                        string tipo = row.Cells["Tipo"].Value?.ToString() ?? ""; // Y aquí
+
+
+                        table.AddCell(new Cell().Add(new Paragraph(idRegistro)));
+                        table.AddCell(new Cell().Add(new Paragraph(nombrePartida)));
+                        table.AddCell(new Cell().Add(new Paragraph(fecha.ToString("dd/MM/yyyy"))));
+                        table.AddCell(new Cell().Add(new Paragraph(nombreCuenta)));
+                        table.AddCell(new Cell().Add(new Paragraph(formattedMonto)));
+                        table.AddCell(new Cell().Add(new Paragraph(tipo)));
+
+                        // Aquí se realiza la clasificación de los montos según el tipo de cuenta
+                        switch (tipo.ToUpper())
+                        {
+                            case "ACTIVO":
+                                totalActivos += monto;
+                                break;
+                            case "PASIVO":
+                                totalPasivos += monto;
+                                break;
+                            case "PATRIMONIO":
+                                totalPatrimonio += monto;
+                                break;
+                                
+                        }
+                    }
+                }
+                CultureInfo lempiraCulture = new("es-HN");
+                document.Add(table);
+
+                // Añadir los totales al documento con el formato de Lempira
+                document.Add(new Paragraph($"Total Activos: {totalActivos.ToString("C", lempiraCulture)}"));
+                document.Add(new Paragraph($"Total Pasivos: {totalPasivos.ToString("C", lempiraCulture)}"));
+                document.Add(new Paragraph($"Total Patrimonio: {totalPatrimonio.ToString("C", lempiraCulture)}"));
+
+                // La ecuación del balance general es Activo = Pasivo + Patrimonio
+                decimal balanceGeneral = totalPasivos + totalPatrimonio;
+                document.Add(new Paragraph($"Balance General (Pasivo + Patrimonio): {balanceGeneral.ToString("C", lempiraCulture)}"));
+                // Verificamos la igualdad para la ecuación contable Activo = Pasivo + Patrimonio
+                if (totalActivos != balanceGeneral)
+                {
+                    document.Add(new Paragraph("Advertencia: Los totales no están balanceados según la ecuación contable."));
+                }
+
+                try
+                {
+                    // Cerrar el documento
+                    document.Close();
+
+                    // Abrir el archivo PDF generado automáticamente
+                    System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(filename) { UseShellExecute = true });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"No se pudo abrir el archivo PDF automáticamente. {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                MessageBox.Show("El reporte se ha generado correctamente.", "Reporte Generado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            }
+
         }
     }
 }

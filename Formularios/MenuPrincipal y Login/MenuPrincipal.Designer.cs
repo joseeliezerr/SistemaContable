@@ -48,13 +48,11 @@
             optionsToolStripMenuItem = new ToolStripMenuItem();
             movimientosPorCuentaToolStripMenuItem = new ToolStripMenuItem();
             balanceGeneralToolStripMenuItem = new ToolStripMenuItem();
-            estadoDeResultadoToolStripMenuItem = new ToolStripMenuItem();
             windowsMenu = new ToolStripMenuItem();
             cascadeToolStripMenuItem = new ToolStripMenuItem();
             catalogoDeClientesProveedoresToolStripMenuItem = new ToolStripMenuItem();
             helpMenu = new ToolStripMenuItem();
             contentsToolStripMenuItem = new ToolStripMenuItem();
-            toolStripSeparator8 = new ToolStripSeparator();
             historicoValorDeConversiónToolStripMenuItem = new ToolStripMenuItem();
             menuStrip = new MenuStrip();
             statusStrip.SuspendLayout();
@@ -189,7 +187,7 @@
             // 
             // toolsMenu
             // 
-            toolsMenu.DropDownItems.AddRange(new ToolStripItem[] { optionsToolStripMenuItem, movimientosPorCuentaToolStripMenuItem, balanceGeneralToolStripMenuItem, estadoDeResultadoToolStripMenuItem });
+            toolsMenu.DropDownItems.AddRange(new ToolStripItem[] { optionsToolStripMenuItem, movimientosPorCuentaToolStripMenuItem, balanceGeneralToolStripMenuItem });
             toolsMenu.Image = (Image)resources.GetObject("toolsMenu.Image");
             toolsMenu.Name = "toolsMenu";
             toolsMenu.Size = new Size(102, 24);
@@ -201,6 +199,7 @@
             optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
             optionsToolStripMenuItem.Size = new Size(253, 26);
             optionsToolStripMenuItem.Text = "Movimientos Diarios";
+            optionsToolStripMenuItem.Click += OptionsToolStripMenuItem_Click;
             // 
             // movimientosPorCuentaToolStripMenuItem
             // 
@@ -208,6 +207,7 @@
             movimientosPorCuentaToolStripMenuItem.Name = "movimientosPorCuentaToolStripMenuItem";
             movimientosPorCuentaToolStripMenuItem.Size = new Size(253, 26);
             movimientosPorCuentaToolStripMenuItem.Text = "Movimientos Por Cuenta";
+            movimientosPorCuentaToolStripMenuItem.Click += MovimientosPorCuentaToolStripMenuItem_Click;
             // 
             // balanceGeneralToolStripMenuItem
             // 
@@ -215,13 +215,7 @@
             balanceGeneralToolStripMenuItem.Name = "balanceGeneralToolStripMenuItem";
             balanceGeneralToolStripMenuItem.Size = new Size(253, 26);
             balanceGeneralToolStripMenuItem.Text = "Balance General";
-            // 
-            // estadoDeResultadoToolStripMenuItem
-            // 
-            estadoDeResultadoToolStripMenuItem.Image = (Image)resources.GetObject("estadoDeResultadoToolStripMenuItem.Image");
-            estadoDeResultadoToolStripMenuItem.Name = "estadoDeResultadoToolStripMenuItem";
-            estadoDeResultadoToolStripMenuItem.Size = new Size(253, 26);
-            estadoDeResultadoToolStripMenuItem.Text = "Estado de Resultado";
+            balanceGeneralToolStripMenuItem.Click += BalanceGeneralToolStripMenuItem_Click;
             // 
             // windowsMenu
             // 
@@ -245,11 +239,11 @@
             catalogoDeClientesProveedoresToolStripMenuItem.Name = "catalogoDeClientesProveedoresToolStripMenuItem";
             catalogoDeClientesProveedoresToolStripMenuItem.Size = new Size(318, 26);
             catalogoDeClientesProveedoresToolStripMenuItem.Text = "Catalogo de Clientes/Proveedores";
-            catalogoDeClientesProveedoresToolStripMenuItem.Click += catalogoDeClientesProveedoresToolStripMenuItem_Click;
+            catalogoDeClientesProveedoresToolStripMenuItem.Click += CatalogoDeClientesProveedoresToolStripMenuItem_Click;
             // 
             // helpMenu
             // 
-            helpMenu.DropDownItems.AddRange(new ToolStripItem[] { contentsToolStripMenuItem, toolStripSeparator8, historicoValorDeConversiónToolStripMenuItem });
+            helpMenu.DropDownItems.AddRange(new ToolStripItem[] { contentsToolStripMenuItem, historicoValorDeConversiónToolStripMenuItem });
             helpMenu.Image = (Image)resources.GetObject("helpMenu.Image");
             helpMenu.Name = "helpMenu";
             helpMenu.Size = new Size(109, 24);
@@ -263,12 +257,7 @@
             contentsToolStripMenuItem.ShowShortcutKeys = false;
             contentsToolStripMenuItem.Size = new Size(288, 26);
             contentsToolStripMenuItem.Text = "Historico Saldos Por Periodo";
-            contentsToolStripMenuItem.Click += contentsToolStripMenuItem_Click;
-            // 
-            // toolStripSeparator8
-            // 
-            toolStripSeparator8.Name = "toolStripSeparator8";
-            toolStripSeparator8.Size = new Size(285, 6);
+            contentsToolStripMenuItem.Click += ContentsToolStripMenuItem_Click;
             // 
             // historicoValorDeConversiónToolStripMenuItem
             // 
@@ -276,6 +265,7 @@
             historicoValorDeConversiónToolStripMenuItem.Name = "historicoValorDeConversiónToolStripMenuItem";
             historicoValorDeConversiónToolStripMenuItem.Size = new Size(288, 26);
             historicoValorDeConversiónToolStripMenuItem.Text = "Historico Valor de Conversión";
+            historicoValorDeConversiónToolStripMenuItem.Click += HistoricoValorDeConversiónToolStripMenuItem_Click;
             // 
             // menuStrip
             // 
@@ -334,11 +324,9 @@
         private ToolStripMenuItem cascadeToolStripMenuItem;
         private ToolStripMenuItem helpMenu;
         private ToolStripMenuItem contentsToolStripMenuItem;
-        private ToolStripSeparator toolStripSeparator8;
         private MenuStrip menuStrip;
         private ToolStripMenuItem movimientosPorCuentaToolStripMenuItem;
         private ToolStripMenuItem balanceGeneralToolStripMenuItem;
-        private ToolStripMenuItem estadoDeResultadoToolStripMenuItem;
         private ToolStripMenuItem historicoValorDeConversiónToolStripMenuItem;
         private ToolStripMenuItem catalogoDeClientesProveedoresToolStripMenuItem;
     }

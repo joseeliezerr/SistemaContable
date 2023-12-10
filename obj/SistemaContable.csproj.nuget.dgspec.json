@@ -47,7 +47,31 @@
           "dependencies": {
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[5.1.2, )"
+              "version": "[4.0.0, )"
+            },
+            "Microsoft.SqlServer.Types": {
+              "target": "Package",
+              "version": "[160.1000.6, )"
+            },
+            "Portable.BouncyCastle": {
+              "target": "Package",
+              "version": "[1.9.0, )"
+            },
+            "ReportViewerCore.NETCore": {
+              "target": "Package",
+              "version": "[15.1.19, )"
+            },
+            "ReportViewerCore.WinForms": {
+              "target": "Package",
+              "version": "[15.1.19, )"
+            },
+            "itext7": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "itext7.bouncy-castle-adapter": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

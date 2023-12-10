@@ -30,7 +30,7 @@ namespace SistemaContable.Formularios.Administracion
 
         }
 
-        private void buttonNuevo_Click(object sender, EventArgs e)
+        private void ButtonNuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
@@ -88,7 +88,7 @@ namespace SistemaContable.Formularios.Administracion
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado un registro (puedes ajustar esta parte según cómo determines qué registro está seleccionado)
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -97,7 +97,7 @@ namespace SistemaContable.Formularios.Administracion
                 return;
             }
 
-            if (!int.TryParse(textBox1.Text, out int IdClienteProveedor))
+            if (!int.TryParse(textBox1.Text, out _))
             {
                 MessageBox.Show("El ID de cuenta proporcionado no es válido.");
                 return;
@@ -140,7 +140,7 @@ namespace SistemaContable.Formularios.Administracion
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void Button3_Click(object sender, EventArgs e)
         {
             // Verificar si se ha seleccionado un registro
             if (string.IsNullOrWhiteSpace(textBox1.Text))
@@ -229,7 +229,7 @@ namespace SistemaContable.Formularios.Administracion
             AjustarDgv();
         }
 
-        private void dtgCatalogoUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DtgCatalogoUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Verificar si se ha seleccionado una fila en el DataGrid
             if (e.RowIndex >= 0)
